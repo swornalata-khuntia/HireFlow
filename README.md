@@ -4,6 +4,8 @@ HireFlow is a Django-based recruitment platform designed to connect job seekers 
 
 The platform provides job discovery, resume analysis, job matching, application tracking, recruiter job management, and REST APIs.
 
+---
+
 ## ✨ Features
 
 ### 👤 Candidate Features
@@ -87,13 +89,288 @@ Supported application statuses include:
 - Rejected
 - Selected
 
+---
+
 ## 🔌 REST API
 
 HireFlow includes REST API endpoints for jobs, applications, and resume-related functionality.
 
 ### Job APIs
 
-```text
-/api/jobs/
-/api/jobs/<id>/
-/api/jobs/create/
+    /api/jobs/
+    /api/jobs/<id>/
+    /api/jobs/create/
+
+### Application APIs
+
+    /api/applications/
+    /api/applications/apply/<job_id>/
+    /api/applications/recruiter/
+    /api/applications/recruiter/status/<id>/
+
+### Resume APIs
+
+    /api/resumes/
+
+The APIs are built using Django REST Framework.
+
+---
+
+## 🛠️ Tech Stack
+
+### Backend
+
+- Python
+- Django
+- Django REST Framework
+
+### Frontend
+
+- HTML5
+- CSS3
+- JavaScript
+
+### Database
+
+- SQLite
+
+### Development Tools
+
+- Visual Studio Code
+- Git
+- GitHub
+- Python Virtual Environment
+
+---
+
+## 📁 Project Structure
+
+    HireFlow/
+    │
+    ├── accounts/
+    │   ├── models.py
+    │   ├── views.py
+    │   ├── urls.py
+    │   └── templates/
+    │
+    ├── applications/
+    │   ├── models.py
+    │   ├── views.py
+    │   ├── api_views.py
+    │   ├── api_serializers.py
+    │   └── api_urls.py
+    │
+    ├── config/
+    │   ├── settings.py
+    │   ├── urls.py
+    │   ├── asgi.py
+    │   └── wsgi.py
+    │
+    ├── dashboard/
+    │   ├── views.py
+    │   ├── urls.py
+    │   └── templates/
+    │
+    ├── jobs/
+    │   ├── models.py
+    │   ├── views.py
+    │   ├── forms.py
+    │   ├── api_views.py
+    │   ├── api_serializers.py
+    │   └── api_urls.py
+    │
+    ├── resume_analyzer/
+    │   ├── models.py
+    │   ├── views.py
+    │   ├── api_views.py
+    │   └── api_serializers.py
+    │
+    ├── static/
+    │   ├── css/
+    │   └── js/
+    │
+    ├── templates/
+    │
+    ├── manage.py
+    ├── requirements.txt
+    ├── .gitignore
+    └── README.md
+
+---
+
+## ⚙️ Installation
+
+### 1. Clone the repository
+
+    git clone https://github.com/YOUR_USERNAME/HireFlow.git
+
+Replace `YOUR_USERNAME` with your GitHub username.
+
+### 2. Open the project
+
+    cd HireFlow
+
+### 3. Create a virtual environment
+
+For Windows:
+
+    python -m venv venv
+
+### 4. Activate the virtual environment
+
+    venv\Scripts\activate
+
+### 5. Install dependencies
+
+    pip install -r requirements.txt
+
+### 6. Apply migrations
+
+    python manage.py migrate
+
+### 7. Create an admin account
+
+    python manage.py createsuperuser
+
+Follow the instructions shown in the terminal.
+
+### 8. Start the development server
+
+    python manage.py runserver
+
+Open the application in your browser:
+
+    http://127.0.0.1:8000/
+
+---
+
+## 🔐 Security
+
+The project excludes local development files and uploaded resume PDFs from Git using `.gitignore`.
+
+The following files are not intended to be committed:
+
+    venv/
+    db.sqlite3
+    resumes/*.pdf
+    .env
+
+For production deployment, sensitive configuration such as secret keys and database credentials should be stored using environment variables.
+
+---
+
+## 📱 Application Workflow
+
+### Candidate Workflow
+
+    Candidate
+       │
+       ├── Sign Up / Login
+       │
+       ├── Upload Resume
+       │
+       ├── Resume Analysis
+       │
+       ├── View Job Matches
+       │
+       ├── Apply for Job
+       │
+       └── Track Application
+
+### Recruiter Workflow
+
+    Recruiter
+       │
+       ├── Sign Up / Login
+       │
+       ├── Recruiter Dashboard
+       │
+       ├── Post Job
+       │
+       ├── Manage Jobs
+       │
+       ├── View Applications
+       │
+       └── Update Application Status
+
+---
+
+## 📊 Core Modules
+
+### Accounts
+
+Handles:
+
+- User registration
+- Login
+- Logout
+- Candidate profiles
+- Recruiter profiles
+- Profile settings
+
+### Jobs
+
+Handles:
+
+- Job creation
+- Job listing
+- Job editing
+- Job deletion
+- Job matching
+- Required skills
+
+### Resume Analyzer
+
+Handles:
+
+- Resume upload
+- Resume text extraction
+- Skill detection
+- Resume profile analysis
+
+### Applications
+
+Handles:
+
+- Applying for jobs
+- Candidate applications
+- Recruiter applications
+- Application status
+- Application tracking
+
+### Dashboard
+
+Provides separate dashboard experiences for candidates and recruiters.
+
+---
+
+## 🔮 Future Enhancements
+
+Possible future improvements include:
+
+- AI-powered resume recommendations
+- Advanced job recommendation system
+- Email notifications
+- Interview scheduling
+- Candidate search and filtering
+- Advanced recruiter analytics
+- Production database integration
+- Cloud deployment
+- Automated resume ranking
+- Authentication tokens for external API clients
+
+---
+
+## 👩‍💻 Author
+
+**Swornalata Khuntia**
+
+MCA Graduate | Python & Django Developer
+
+---
+
+## 📌 Project Status
+
+HireFlow is an actively developed Django recruitment platform.
+
+Built with Python, Django, Django REST Framework, HTML, CSS, JavaScript, and SQLite.
