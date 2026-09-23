@@ -1,0 +1,648 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+    <meta charset="UTF-8">
+
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Candidate Applications | HireFlow</title>
+
+    <style>
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: Arial, Helvetica, sans-serif;
+            background: #f4f6fb;
+            color: #172033;
+        }
+
+        /* NAVBAR */
+
+        .navbar {
+            height: 72px;
+            background: #111827;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            padding: 0 40px;
+        }
+
+        .logo {
+            color: white;
+            font-size: 27px;
+            font-weight: 700;
+        }
+
+        .logo span {
+            color: #6366f1;
+        }
+
+        .nav-links {
+            display: flex;
+            align-items: center;
+            gap: 25px;
+        }
+
+        .nav-links a {
+            color: #e5e7eb;
+            text-decoration: none;
+            font-size: 14px;
+        }
+
+        .nav-links a:hover {
+            color: #818cf8;
+        }
+
+        /* CONTAINER */
+
+        .container {
+            max-width: 1200px;
+            margin: auto;
+            padding: 40px 20px;
+        }
+
+        /* HEADER */
+
+        .page-header {
+            margin-bottom: 28px;
+        }
+
+        .page-header h1 {
+            font-size: 30px;
+            margin-bottom: 8px;
+        }
+
+        .page-header p {
+            color: #6b7280;
+            font-size: 14px;
+            line-height: 1.6;
+        }
+
+        .company-name {
+            display: inline-block;
+            margin-top: 12px;
+            padding: 7px 13px;
+            background: #eef2ff;
+            color: #4f46e5;
+            border-radius: 20px;
+            font-size: 12px;
+            font-weight: 600;
+        }
+
+        /* CARD */
+
+        .applications-card {
+            background: white;
+            border-radius: 20px;
+            border: 1px solid #eef0f6;
+            box-shadow: 0 10px 30px rgba(15, 23, 42, 0.06);
+            overflow: hidden;
+        }
+
+        /* TABLE */
+
+        .table-wrapper {
+            width: 100%;
+            overflow-x: auto;
+        }
+
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            min-width: 850px;
+        }
+
+        thead {
+            background: #f8fafc;
+        }
+
+        th {
+            text-align: left;
+            padding: 16px 20px;
+            color: #6b7280;
+            font-size: 12px;
+            font-weight: 700;
+            text-transform: uppercase;
+            letter-spacing: 0.4px;
+            border-bottom: 1px solid #eef0f6;
+        }
+
+        td {
+            padding: 18px 20px;
+            border-bottom: 1px solid #eef0f6;
+            vertical-align: middle;
+        }
+
+        tbody tr:hover {
+            background: #fafbff;
+        }
+
+        tbody tr:last-child td {
+            border-bottom: none;
+        }
+
+        /* CANDIDATE */
+
+        .candidate {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+        }
+
+        .avatar {
+            width: 42px;
+            height: 42px;
+            border-radius: 12px;
+            background: #e0e7ff;
+            color: #4338ca;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 16px;
+            font-weight: 700;
+            flex-shrink: 0;
+        }
+
+        .candidate-info {
+            min-width: 0;
+        }
+
+        .candidate-name {
+            font-size: 14px;
+            font-weight: 700;
+            color: #172033;
+            margin-bottom: 4px;
+        }
+
+        .candidate-email {
+            font-size: 12px;
+            color: #6b7280;
+            word-break: break-word;
+        }
+
+        /* VIEW PROFILE */
+
+        .profile-btn {
+            display: inline-block;
+            margin-top: 8px;
+            padding: 7px 11px;
+            background: #eef2ff;
+            color: #4f46e5;
+            border-radius: 8px;
+            text-decoration: none;
+            font-size: 12px;
+            font-weight: 600;
+            transition: 0.2s;
+        }
+
+        .profile-btn:hover {
+            background: #e0e7ff;
+            color: #3730a3;
+        }
+
+        /* JOB */
+
+        .job-title {
+            font-size: 14px;
+            font-weight: 600;
+            color: #172033;
+            margin-bottom: 5px;
+        }
+
+        .job-company {
+            font-size: 12px;
+            color: #6b7280;
+        }
+
+        /* DATE */
+
+        .date {
+            font-size: 13px;
+            color: #4b5563;
+        }
+
+        /* STATUS */
+
+        .status-form {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .status-select {
+            border: 1px solid #dbe1ea;
+            background: white;
+            border-radius: 8px;
+            padding: 8px 10px;
+            font-size: 12px;
+            color: #374151;
+            cursor: pointer;
+            outline: none;
+        }
+
+        .status-select:focus {
+            border-color: #6366f1;
+            box-shadow: 0 0 0 3px rgba(99, 102, 241, 0.10);
+        }
+
+        .update-btn {
+            border: none;
+            background: #4f46e5;
+            color: white;
+            padding: 8px 11px;
+            border-radius: 8px;
+            font-size: 12px;
+            font-weight: 600;
+            cursor: pointer;
+        }
+
+        .update-btn:hover {
+            background: #4338ca;
+        }
+
+        /* EMPTY */
+
+        .empty-state {
+            text-align: center;
+            padding: 70px 25px;
+        }
+
+        .empty-icon {
+            width: 70px;
+            height: 70px;
+            margin: 0 auto 18px;
+            border-radius: 20px;
+            background: #eef2ff;
+            color: #4f46e5;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 30px;
+        }
+
+        .empty-state h2 {
+            font-size: 21px;
+            margin-bottom: 8px;
+        }
+
+        .empty-state p {
+            color: #6b7280;
+            font-size: 14px;
+            max-width: 430px;
+            margin: auto;
+            line-height: 1.6;
+        }
+
+        /* BOTTOM */
+
+        .bottom-actions {
+            padding: 20px;
+            border-top: 1px solid #eef0f6;
+        }
+
+        .back-btn {
+            display: inline-block;
+            padding: 10px 15px;
+            border-radius: 9px;
+            background: #f1f5f9;
+            color: #374151;
+            text-decoration: none;
+            font-size: 13px;
+            font-weight: 600;
+        }
+
+        .back-btn:hover {
+            background: #e2e8f0;
+        }
+
+        /* RESPONSIVE */
+
+        @media (max-width: 700px) {
+
+            .navbar {
+                padding: 0 18px;
+            }
+
+            .logo {
+                font-size: 23px;
+            }
+
+            .nav-links {
+                gap: 12px;
+            }
+
+            .nav-links a {
+                font-size: 12px;
+            }
+
+            .container {
+                padding: 25px 15px;
+            }
+
+            .page-header h1 {
+                font-size: 25px;
+            }
+
+            .applications-card {
+                border-radius: 15px;
+            }
+        }
+
+    </style>
+
+</head>
+
+
+<body>
+
+
+    <!-- NAVBAR -->
+
+    <nav class="navbar">
+
+        <div class="logo">
+            Hire<span>Flow</span>
+        </div>
+
+        <div class="nav-links">
+
+            <a href="{% url 'recruiter_dashboard' %}">
+                Dashboard
+            </a>
+
+            <a href="{% url 'manage_jobs' %}">
+                Manage Jobs
+            </a>
+
+            <a href="{% url 'logout' %}">
+                Logout
+            </a>
+
+        </div>
+
+    </nav>
+
+
+    <!-- MAIN -->
+
+    <main class="container">
+
+
+        <div class="page-header">
+
+            <h1>
+                Candidate Applications
+            </h1>
+
+            <p>
+                Review candidates who have applied for your company's job openings.
+            </p>
+
+            <span class="company-name">
+                🏢 {{ company_name }}
+            </span>
+
+        </div>
+
+
+        <!-- APPLICATION CARD -->
+
+        <div class="applications-card">
+
+
+            {% if applications %}
+
+
+            <div class="table-wrapper">
+
+                <table>
+
+                    <thead>
+
+                        <tr>
+
+                            <th>
+                                Candidate
+                            </th>
+
+                            <th>
+                                Job
+                            </th>
+
+                            <th>
+                                Applied Date
+                            </th>
+
+                            <th>
+                                Status
+                            </th>
+
+                        </tr>
+
+                    </thead>
+
+
+                    <tbody>
+
+
+                        {% for application in applications %}
+
+
+                        <tr>
+
+
+                            <!-- CANDIDATE -->
+
+                            <td>
+
+                                <div class="candidate">
+
+                                    <div class="avatar">
+                                        {{ application.user.username|first|upper }}
+                                    </div>
+
+                                    <div class="candidate-info">
+
+                                        <div class="candidate-name">
+                                            {{ application.user.username }}
+                                        </div>
+
+                                        <div class="candidate-email">
+                                            {{ application.user.email }}
+                                        </div>
+
+                                        <a
+                                            href="{% url 'candidate_profile' application.id %}"
+                                            class="profile-btn"
+                                        >
+                                            View Profile
+                                        </a>
+
+                                    </div>
+
+                                </div>
+
+                            </td>
+
+
+                            <!-- JOB -->
+
+                            <td>
+
+                                <div class="job-title">
+                                    {{ application.job.title }}
+                                </div>
+
+                                <div class="job-company">
+                                    {{ application.job.company }}
+                                </div>
+
+                            </td>
+
+
+                            <!-- DATE -->
+
+                            <td>
+
+                                <div class="date">
+                                    {{ application.applied_at|date:"d M Y" }}
+                                </div>
+
+                            </td>
+
+
+                            <!-- STATUS -->
+
+                            <td>
+
+                                <form
+                                    method="POST"
+                                    action="{% url 'update_application_status' application.id %}"
+                                    class="status-form"
+                                >
+
+                                    {% csrf_token %}
+
+                                    <select
+                                        name="status"
+                                        class="status-select"
+                                    >
+
+                                        <option
+                                            value="Applied"
+                                            {% if application.status == "Applied" %}selected{% endif %}
+                                        >
+                                            Applied
+                                        </option>
+
+                                        <option
+                                            value="Shortlisted"
+                                            {% if application.status == "Shortlisted" %}selected{% endif %}
+                                        >
+                                            Shortlisted
+                                        </option>
+
+                                        <option
+                                            value="Interview"
+                                            {% if application.status == "Interview" %}selected{% endif %}
+                                        >
+                                            Interview
+                                        </option>
+
+                                        <option
+                                            value="Selected"
+                                            {% if application.status == "Selected" %}selected{% endif %}
+                                        >
+                                            Selected
+                                        </option>
+
+                                        <option
+                                            value="Rejected"
+                                            {% if application.status == "Rejected" %}selected{% endif %}
+                                        >
+                                            Rejected
+                                        </option>
+
+                                    </select>
+
+
+                                    <button
+                                        type="submit"
+                                        class="update-btn"
+                                    >
+                                        Update
+                                    </button>
+
+                                </form>
+
+                            </td>
+
+
+                        </tr>
+
+
+                        {% endfor %}
+
+
+                    </tbody>
+
+                </table>
+
+            </div>
+
+
+            {% else %}
+
+
+            <!-- EMPTY STATE -->
+
+            <div class="empty-state">
+
+                <div class="empty-icon">
+                    👥
+                </div>
+
+                <h2>
+                    No Applications Yet
+                </h2>
+
+                <p>
+                    Candidates who apply for your company's job openings will appear here.
+                </p>
+
+            </div>
+
+
+            {% endif %}
+
+
+            <!-- BACK -->
+
+            <div class="bottom-actions">
+
+                <a
+                    href="{% url 'recruiter_dashboard' %}"
+                    class="back-btn"
+                >
+                    ← Back to Dashboard
+                </a>
+
+            </div>
+
+
+        </div>
+
+
+    </main>
+
+
+</body>
+
+</html>

@@ -1,0 +1,1243 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+    <meta charset="UTF-8">
+
+    <meta name="viewport"
+          content="width=device-width, initial-scale=1.0">
+
+    <title>HireFlow | Dashboard</title>
+
+
+    <style>
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+
+        body {
+            font-family: Arial, Helvetica, sans-serif;
+            background: #f5f7fb;
+            color: #172033;
+        }
+
+
+        a {
+            text-decoration: none;
+        }
+
+
+        .layout {
+            display: flex;
+            min-height: 100vh;
+        }
+
+
+        /* ================= SIDEBAR ================= */
+
+        .sidebar {
+            width: 250px;
+            background: #111827;
+            color: white;
+            padding: 25px 18px;
+
+            position: fixed;
+            left: 0;
+            top: 0;
+            bottom: 0;
+        }
+
+
+        .logo {
+            font-size: 25px;
+            font-weight: 800;
+            padding: 5px 12px 30px;
+        }
+
+
+        .logo span {
+            color: #818cf8;
+        }
+
+
+        .menu-title {
+            font-size: 11px;
+            color: #8d96a8;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+
+            padding: 0 12px;
+            margin-bottom: 10px;
+        }
+
+
+        .nav {
+            display: flex;
+            flex-direction: column;
+            gap: 5px;
+        }
+
+
+        .nav a {
+            color: #cbd5e1;
+            padding: 13px 12px;
+            border-radius: 10px;
+
+            font-size: 14px;
+            font-weight: 500;
+
+            transition: 0.2s;
+        }
+
+
+        .nav a:hover {
+            background: #1f2937;
+            color: white;
+        }
+
+
+        .nav a.active {
+            background: #3730a3;
+            color: white;
+        }
+
+
+        .nav-icon {
+            display: inline-block;
+            width: 25px;
+        }
+
+
+        .sidebar-bottom {
+            position: absolute;
+            left: 18px;
+            right: 18px;
+            bottom: 25px;
+        }
+
+
+        .logout {
+            display: block;
+            color: #fca5a5;
+            padding: 12px;
+            border-radius: 10px;
+            font-size: 14px;
+        }
+
+
+        .logout:hover {
+            background: #1f2937;
+        }
+
+
+        /* ================= MAIN ================= */
+
+        .main {
+            margin-left: 250px;
+            width: calc(100% - 250px);
+            padding: 30px;
+        }
+
+
+        /* ================= TOP BAR ================= */
+
+        .topbar {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+
+            margin-bottom: 30px;
+        }
+
+
+        .welcome h1 {
+            font-size: 28px;
+            margin-bottom: 7px;
+        }
+
+
+        .welcome p {
+            color: #737b8c;
+            font-size: 14px;
+        }
+
+
+        .profile-box {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+
+        .avatar {
+            width: 42px;
+            height: 42px;
+
+            border-radius: 50%;
+
+            display: flex;
+            justify-content: center;
+            align-items: center;
+
+            background: linear-gradient(
+                135deg,
+                #4f46e5,
+                #7c3aed
+            );
+
+            color: white;
+            font-weight: 700;
+        }
+
+
+        .profile-name {
+            font-size: 13px;
+            font-weight: 700;
+        }
+
+
+        .profile-role {
+            font-size: 11px;
+            color: #8a91a1;
+            margin-top: 3px;
+        }
+
+
+        /* ================= STATS ================= */
+
+        .stats {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 18px;
+            margin-bottom: 25px;
+        }
+
+
+        .stat-card {
+            background: white;
+            padding: 22px;
+
+            border-radius: 16px;
+
+            box-shadow:
+                0 5px 20px rgba(0, 0, 0, 0.04);
+        }
+
+
+        .stat-label {
+            color: #737b8c;
+            font-size: 12px;
+            margin-bottom: 10px;
+        }
+
+
+        .stat-value {
+            font-size: 28px;
+            font-weight: 800;
+        }
+
+
+        .stat-info {
+            margin-top: 7px;
+            font-size: 11px;
+            color: #818898;
+        }
+
+
+        /* ================= GRID ================= */
+
+        .dashboard-grid {
+            display: grid;
+            grid-template-columns: 1.5fr 1fr;
+            gap: 20px;
+        }
+
+
+        .card {
+            background: white;
+            border-radius: 18px;
+            padding: 24px;
+
+            box-shadow:
+                0 5px 20px rgba(0, 0, 0, 0.04);
+        }
+
+
+        .card-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+
+            margin-bottom: 20px;
+        }
+
+
+        .card-title {
+            font-size: 17px;
+            font-weight: 700;
+        }
+
+
+        .view-all {
+            font-size: 12px;
+            color: #4f46e5;
+            font-weight: 600;
+        }
+
+
+        /* ================= PROFILE MATCH ================= */
+
+        .match-box {
+            display: flex;
+            align-items: center;
+            gap: 25px;
+        }
+
+
+        .circle {
+            width: 100px;
+            height: 100px;
+
+            border-radius: 50%;
+
+            display: flex;
+            justify-content: center;
+            align-items: center;
+
+            background:
+                conic-gradient(
+                    #4f46e5 82%,
+                    #e5e7eb 82%
+                );
+
+            position: relative;
+        }
+
+
+        .circle::before {
+            content: "";
+            position: absolute;
+
+            width: 76px;
+            height: 76px;
+
+            background: white;
+            border-radius: 50%;
+        }
+
+
+        .circle span {
+            position: relative;
+            z-index: 2;
+
+            font-size: 20px;
+            font-weight: 800;
+        }
+
+
+        .match-text h3 {
+            font-size: 18px;
+            margin-bottom: 7px;
+        }
+
+
+        .match-text p {
+            color: #737b8c;
+            font-size: 13px;
+            line-height: 1.5;
+        }
+
+
+        /* ================= APPLICATIONS ================= */
+
+        .application {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+
+            padding: 14px 0;
+
+            border-bottom: 1px solid #edf0f5;
+        }
+
+
+        .application:last-child {
+            border-bottom: none;
+        }
+
+
+        .application-title {
+            font-size: 14px;
+            font-weight: 700;
+        }
+
+
+        .application-company {
+            color: #7b8494;
+            font-size: 12px;
+            margin-top: 5px;
+        }
+
+
+        .status {
+            padding: 6px 10px;
+            border-radius: 20px;
+
+            background: #eef2ff;
+            color: #4338ca;
+
+            font-size: 10px;
+            font-weight: 700;
+        }
+
+
+        /* ================= RECOMMENDED JOBS ================= */
+
+        .recommended {
+            padding: 16px 0;
+            border-bottom: 1px solid #edf0f5;
+        }
+
+
+        .recommended:last-child {
+            border-bottom: none;
+        }
+
+
+        .recommended-title {
+            font-size: 14px;
+            font-weight: 700;
+        }
+
+
+        .recommended-company {
+            color: #737b8c;
+            font-size: 12px;
+            margin-top: 5px;
+        }
+
+
+        .match-tag {
+            display: inline-block;
+
+            margin-top: 9px;
+
+            padding: 5px 9px;
+
+            background: #ecfdf5;
+            color: #047857;
+
+            border-radius: 15px;
+
+            font-size: 10px;
+            font-weight: 700;
+        }
+
+
+        .no-jobs {
+            padding: 25px 5px;
+
+            color: #737b8c;
+
+            font-size: 13px;
+            line-height: 1.7;
+        }
+
+
+        .upload-link {
+            display: inline-block;
+
+            margin-top: 10px;
+
+            color: #4f46e5;
+            font-weight: 700;
+        }
+
+
+        /* ================= QUICK ACTIONS ================= */
+
+        .quick-actions {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 12px;
+        }
+
+
+        .action {
+            padding: 17px;
+
+            border: 1px solid #e8ebf2;
+            border-radius: 12px;
+
+            color: #172033;
+
+            transition: 0.2s;
+        }
+
+
+        .action:hover {
+            border-color: #818cf8;
+            background: #f8f8ff;
+        }
+
+
+        .action-icon {
+            display: block;
+
+            font-size: 22px;
+            margin-bottom: 9px;
+        }
+
+
+        .action-title {
+            font-size: 13px;
+            font-weight: 700;
+        }
+
+
+        .action-description {
+            color: #8a91a1;
+            font-size: 10px;
+            margin-top: 4px;
+        }
+
+
+        /* ================= EMPTY APPLICATION ================= */
+
+        .empty-applications {
+            padding: 20px 0;
+
+            color: #737b8c;
+
+            font-size: 13px;
+            line-height: 1.6;
+        }
+
+
+        /* ================= RESPONSIVE ================= */
+
+        @media (max-width: 1000px) {
+
+            .stats {
+                grid-template-columns: repeat(2, 1fr);
+            }
+
+            .dashboard-grid {
+                grid-template-columns: 1fr;
+            }
+
+        }
+
+
+        @media (max-width: 700px) {
+
+            .sidebar {
+                width: 70px;
+                padding: 20px 10px;
+            }
+
+
+            .logo {
+                font-size: 0;
+                text-align: center;
+                padding-bottom: 25px;
+            }
+
+
+            .logo::after {
+                content: "H";
+                font-size: 25px;
+                color: white;
+            }
+
+
+            .menu-title {
+                display: none;
+            }
+
+
+            .nav a {
+                text-align: center;
+                font-size: 0;
+                padding: 13px 5px;
+            }
+
+
+            .nav-icon {
+                width: auto;
+                font-size: 18px;
+            }
+
+
+            .sidebar-bottom {
+                left: 10px;
+                right: 10px;
+            }
+
+
+            .logout {
+                font-size: 0;
+                text-align: center;
+            }
+
+
+            .logout::before {
+                content: "↪";
+                font-size: 18px;
+            }
+
+
+            .main {
+                margin-left: 70px;
+                width: calc(100% - 70px);
+                padding: 20px;
+            }
+
+
+            .topbar {
+                align-items: flex-start;
+            }
+
+
+            .welcome h1 {
+                font-size: 22px;
+            }
+
+
+            .profile-box {
+                display: none;
+            }
+
+        }
+
+
+        @media (max-width: 500px) {
+
+            .stats {
+                grid-template-columns: 1fr 1fr;
+                gap: 10px;
+            }
+
+
+            .stat-card {
+                padding: 16px;
+            }
+
+
+            .stat-value {
+                font-size: 23px;
+            }
+
+
+            .card {
+                padding: 18px;
+            }
+
+
+            .quick-actions {
+                grid-template-columns: 1fr;
+            }
+
+
+            .match-box {
+                flex-direction: column;
+                align-items: flex-start;
+            }
+
+        }
+
+    </style>
+
+</head>
+
+
+<body>
+
+
+<div class="layout">
+
+
+    <!-- ================= SIDEBAR ================= -->
+
+    <aside class="sidebar">
+
+
+        <div class="logo">
+            Hire<span>Flow</span>
+        </div>
+
+
+        <div class="menu-title">
+            Main Menu
+        </div>
+
+
+        <nav class="nav">
+
+
+            <a href="{% url 'dashboard' %}"
+               class="active">
+
+                <span class="nav-icon">⌂</span>
+
+                Dashboard
+
+            </a>
+
+
+            <a href="{% url 'job_matches' %}">
+
+                <span class="nav-icon">✦</span>
+
+                AI Job Matches
+
+            </a>
+
+
+            <a href="{% url 'resume_upload' %}">
+
+                <span class="nav-icon">📄</span>
+
+                Resume Analyzer
+
+            </a>
+
+
+            <a href="{% url 'my_applications' %}">
+
+                <span class="nav-icon">💼</span>
+
+                My Applications
+
+            </a>
+
+
+            <a href="{% url 'account_settings' %}">
+
+                <span class="nav-icon">⚙</span>
+
+                Settings
+
+            </a>
+
+
+            <a href="{% url 'candidate_profile' %}">
+
+                <span class="nav-icon">👤</span>
+
+                Profile
+
+            </a>
+
+
+        </nav>
+
+
+        <div class="sidebar-bottom">
+
+            <a href="{% url 'logout' %}"
+               class="logout">
+
+                ⇥ &nbsp; Logout
+
+            </a>
+
+        </div>
+
+
+    </aside>
+
+
+    <!-- ================= MAIN ================= -->
+
+    <main class="main">
+
+
+        <!-- TOP BAR -->
+
+        <div class="topbar">
+
+
+            <div class="welcome">
+
+                <h1>
+                    Welcome back, {{ user.username }} 👋
+                </h1>
+
+                <p>
+                    Here's what's happening with your career today.
+                </p>
+
+            </div>
+
+
+            <div class="profile-box">
+
+                <div class="avatar">
+
+                    {{ user.username|first|upper }}
+
+                </div>
+
+
+                <div>
+
+                    <div class="profile-name">
+
+                        {{ user.username }}
+
+                    </div>
+
+                    <div class="profile-role">
+
+                        Job Seeker
+
+                    </div>
+
+                </div>
+
+            </div>
+
+
+        </div>
+
+
+        <!-- ================= STATS ================= -->
+
+        <div class="stats">
+
+
+            <div class="stat-card">
+
+                <div class="stat-label">
+                    Applications
+                </div>
+
+                <div class="stat-value">
+                    {{ applications_count }}
+                </div>
+
+                <div class="stat-info">
+                    Total applications
+                </div>
+
+            </div>
+
+
+            <div class="stat-card">
+
+                <div class="stat-label">
+                    Interviews
+                </div>
+
+                <div class="stat-value">
+                    {{ interviews_count }}
+                </div>
+
+                <div class="stat-info">
+                    Interview opportunities
+                </div>
+
+            </div>
+
+
+            <div class="stat-card">
+
+                <div class="stat-label">
+                    Job Matches
+                </div>
+
+                <div class="stat-value">
+                    {{ recommended_jobs|length }}
+                </div>
+
+                <div class="stat-info">
+                    AI recommended jobs
+                </div>
+
+            </div>
+
+
+            <div class="stat-card">
+
+                <div class="stat-label">
+                    Profile Score
+                </div>
+
+                <div class="stat-value">
+                    82%
+                </div>
+
+                <div class="stat-info">
+                    Resume profile strength
+                </div>
+
+            </div>
+
+
+        </div>
+
+
+        <!-- ================= MAIN GRID ================= -->
+
+        <div class="dashboard-grid">
+
+
+            <!-- LEFT COLUMN -->
+
+            <div>
+
+
+                <!-- PROFILE MATCH -->
+
+                <div class="card"
+                     style="margin-bottom:20px;">
+
+
+                    <div class="card-header">
+
+                        <div class="card-title">
+                            AI Profile Match
+                        </div>
+
+                        <a href="{% url 'resume_upload' %}"
+                           class="view-all">
+
+                            Improve Profile
+
+                        </a>
+
+                    </div>
+
+
+                    <div class="match-box">
+
+
+                        <div class="circle">
+
+                            <span>
+                                82%
+                            </span>
+
+                        </div>
+
+
+                        <div class="match-text">
+
+                            <h3>
+                                Your profile is looking good
+                            </h3>
+
+                            <p>
+                                Upload and update your resume regularly
+                                to improve your AI job recommendations.
+                            </p>
+
+                        </div>
+
+
+                    </div>
+
+
+                </div>
+
+
+                <!-- RECENT APPLICATIONS -->
+
+                <div class="card">
+
+
+                    <div class="card-header">
+
+                        <div class="card-title">
+                            Recent Applications
+                        </div>
+
+                        <a href="{% url 'my_applications' %}"
+                           class="view-all">
+
+                            View All
+
+                        </a>
+
+                    </div>
+
+
+                    {% if recent_applications %}
+
+
+                        {% for application in recent_applications %}
+
+
+                            <div class="application">
+
+
+                                <div>
+
+                                    <div class="application-title">
+
+                                        {{ application.job.title }}
+
+                                    </div>
+
+
+                                    <div class="application-company">
+
+                                        {{ application.job.company }}
+
+                                    </div>
+
+                                </div>
+
+
+                                <div class="status">
+
+                                    {{ application.status }}
+
+                                </div>
+
+
+                            </div>
+
+
+                        {% endfor %}
+
+
+                    {% else %}
+
+
+                        <div class="empty-applications">
+
+                            You haven't applied to any jobs yet.
+
+                            <br>
+
+                            Explore AI Job Matches and apply to suitable jobs.
+
+                        </div>
+
+
+                    {% endif %}
+
+
+                </div>
+
+
+            </div>
+
+
+            <!-- RIGHT COLUMN -->
+
+            <div>
+
+
+                <!-- QUICK ACTIONS -->
+
+                <div class="card"
+                     style="margin-bottom:20px;">
+
+
+                    <div class="card-header">
+
+                        <div class="card-title">
+                            Quick Actions
+                        </div>
+
+                    </div>
+
+
+                    <div class="quick-actions">
+
+
+                        <a href="{% url 'job_matches' %}"
+                           class="action">
+
+                            <span class="action-icon">
+                                ✦
+                            </span>
+
+                            <div class="action-title">
+                                Find Jobs
+                            </div>
+
+                            <div class="action-description">
+                                AI matched jobs
+                            </div>
+
+                        </a>
+
+
+                        <a href="{% url 'resume_upload' %}"
+                           class="action">
+
+                            <span class="action-icon">
+                                📄
+                            </span>
+
+                            <div class="action-title">
+                                Analyze Resume
+                            </div>
+
+                            <div class="action-description">
+                                Check resume score
+                            </div>
+
+                        </a>
+
+
+                        <a href="{% url 'my_applications' %}"
+                           class="action">
+
+                            <span class="action-icon">
+                                💼
+                            </span>
+
+                            <div class="action-title">
+                                My Applications
+                            </div>
+
+                            <div class="action-description">
+                                Track applications
+                            </div>
+
+                        </a>
+
+
+                        <a href="#"
+                           class="action">
+
+                            <span class="action-icon">
+                                👤
+                            </span>
+
+                            <div class="action-title">
+                                My Profile
+                            </div>
+
+                            <div class="action-description">
+                                Manage profile
+                            </div>
+
+                        </a>
+
+
+                    </div>
+
+
+                </div>
+
+
+                <!-- RECOMMENDED JOBS -->
+
+                <div class="card">
+
+
+                    <div class="card-header">
+
+                        <div class="card-title">
+                            Recommended Jobs
+                        </div>
+
+                        <a href="{% url 'job_matches' %}"
+                           class="view-all">
+
+                            View All
+
+                        </a>
+
+                    </div>
+
+
+                    {% if recommended_jobs %}
+
+
+                        {% for result in recommended_jobs %}
+
+
+                            <div class="recommended">
+
+
+                                <div class="recommended-title">
+
+                                    {{ result.job.title }}
+
+                                </div>
+
+
+                                <div class="recommended-company">
+
+                                    {{ result.job.company }}
+
+                                    •
+                                    
+                                    {{ result.job.location }}
+
+                                </div>
+
+
+                                <span class="match-tag">
+
+                                    {{ result.match_percentage }}% Match
+
+                                </span>
+
+
+                            </div>
+
+
+                        {% endfor %}
+
+
+                    {% else %}
+
+
+                        <div class="no-jobs">
+
+                            <strong>
+                                No recommendations yet.
+                            </strong>
+
+                            <br>
+
+                            Upload your resume to get
+                            personalized job matches.
+
+                            <br>
+
+
+                            <a href="{% url 'resume_upload' %}"
+                               class="upload-link">
+
+                                Upload Resume →
+
+                            </a>
+
+                        </div>
+
+
+                    {% endif %}
+
+
+                </div>
+
+
+            </div>
+
+
+        </div>
+
+
+    </main>
+
+
+</div>
+
+
+</body>
+
+</html>

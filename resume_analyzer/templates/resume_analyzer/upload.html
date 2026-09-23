@@ -1,0 +1,179 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+    <meta charset="UTF-8">
+
+    <meta name="viewport"
+          content="width=device-width, initial-scale=1.0">
+
+    <title>Resume Analyzer - HireFlow</title>
+
+    <style>
+
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+            font-family: Arial, sans-serif;
+        }
+
+        body {
+            min-height: 100vh;
+            background: #f5f7fb;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            padding: 30px;
+        }
+
+        .container {
+            width: 100%;
+            max-width: 650px;
+            background: white;
+            padding: 40px;
+            border-radius: 20px;
+            box-shadow: 0 10px 35px rgba(0,0,0,0.08);
+        }
+
+        .logo {
+            font-size: 28px;
+            font-weight: bold;
+            color: #111827;
+            margin-bottom: 30px;
+        }
+
+        .logo span {
+            color: #6366f1;
+        }
+
+        h1 {
+            font-size: 28px;
+            margin-bottom: 10px;
+        }
+
+        .subtitle {
+            color: #6b7280;
+            margin-bottom: 30px;
+        }
+
+        .upload-box {
+            border: 2px dashed #c7d2fe;
+            background: #f8faff;
+            padding: 45px 25px;
+            border-radius: 16px;
+            text-align: center;
+        }
+
+        .icon {
+            font-size: 50px;
+            margin-bottom: 15px;
+        }
+
+        input[type="file"] {
+            margin: 20px 0;
+            width: 100%;
+        }
+
+        button {
+            width: 100%;
+            padding: 14px;
+            border: none;
+            border-radius: 10px;
+            background: linear-gradient(135deg, #4f46e5, #7c3aed);
+            color: white;
+            font-size: 16px;
+            font-weight: bold;
+            cursor: pointer;
+        }
+
+        button:hover {
+            opacity: 0.9;
+        }
+
+        .error {
+            background: #fee2e2;
+            color: #b91c1c;
+            padding: 12px;
+            border-radius: 8px;
+            margin-bottom: 20px;
+        }
+
+        .back {
+            display: inline-block;
+            margin-top: 20px;
+            color: #4f46e5;
+            text-decoration: none;
+        }
+
+    </style>
+
+</head>
+
+<body>
+
+<div class="container">
+
+    <div class="logo">
+        Hire<span>Flow</span>
+    </div>
+
+    <h1>AI Resume Analyzer 🤖</h1>
+
+    <p class="subtitle">
+        Upload your resume and HireFlow will analyze its content.
+    </p>
+
+    {% if error %}
+
+        <div class="error">
+            {{ error }}
+        </div>
+
+    {% endif %}
+
+    <form method="POST"
+          enctype="multipart/form-data">
+
+        {% csrf_token %}
+
+        <div class="upload-box">
+
+            <div class="icon">
+                📄
+            </div>
+
+            <h3>
+                Upload your resume
+            </h3>
+
+            <p style="color:#6b7280; margin-top:8px;">
+                PDF format • Maximum 5 MB
+            </p>
+
+            <input
+                type="file"
+                name="resume"
+                accept=".pdf"
+                required
+            >
+
+            <button type="submit">
+                Analyze Resume
+            </button>
+
+        </div>
+
+    </form>
+
+    <a href="{% url 'dashboard' %}"
+       class="back">
+        ← Back to Dashboard
+    </a>
+
+</div>
+
+</body>
+
+</html>

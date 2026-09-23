@@ -1,0 +1,392 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Post New Job | HireFlow</title>
+
+    <style>
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: Arial, Helvetica, sans-serif;
+        }
+
+        body {
+            background: #f5f7fb;
+            color: #1f2937;
+        }
+
+        .navbar {
+            background: #111827;
+            padding: 18px 7%;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .logo {
+            color: white;
+            font-size: 24px;
+            font-weight: bold;
+        }
+
+        .logo span {
+            color: #6366f1;
+        }
+
+        .back {
+            color: #d1d5db;
+            text-decoration: none;
+            font-size: 14px;
+        }
+
+        .back:hover {
+            color: white;
+        }
+
+        .container {
+            max-width: 900px;
+            margin: 45px auto;
+            padding: 0 20px;
+        }
+
+        .page-header {
+            margin-bottom: 25px;
+        }
+
+        .page-header h1 {
+            font-size: 30px;
+            color: #111827;
+            margin-bottom: 8px;
+        }
+
+        .page-header p {
+            color: #6b7280;
+            font-size: 14px;
+        }
+
+        .company-box {
+            background: #eef2ff;
+            border: 1px solid #c7d2fe;
+            padding: 15px 18px;
+            border-radius: 12px;
+            margin-bottom: 25px;
+            color: #3730a3;
+            font-size: 14px;
+        }
+
+        .form-card {
+            background: white;
+            border-radius: 18px;
+            padding: 32px;
+            box-shadow: 0 8px 30px rgba(0, 0, 0, 0.06);
+        }
+
+        .form-row {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 20px;
+        }
+
+        .form-group {
+            margin-bottom: 22px;
+        }
+
+        label {
+            display: block;
+            font-size: 13px;
+            font-weight: bold;
+            color: #374151;
+            margin-bottom: 8px;
+        }
+
+        input,
+        textarea,
+        select {
+            width: 100%;
+            padding: 13px 14px;
+            border: 1px solid #d1d5db;
+            border-radius: 10px;
+            font-size: 14px;
+            outline: none;
+            transition: 0.2s;
+            background: white;
+        }
+
+        input:focus,
+        textarea:focus,
+        select:focus {
+            border-color: #6366f1;
+            box-shadow: 0 0 0 3px #e0e7ff;
+        }
+
+        textarea {
+            resize: vertical;
+            min-height: 150px;
+        }
+
+        .help-text {
+            color: #9ca3af;
+            font-size: 11px;
+            margin-top: 6px;
+        }
+
+        .error {
+            color: #dc2626;
+            font-size: 12px;
+            margin-top: 5px;
+        }
+
+        .buttons {
+            display: flex;
+            gap: 12px;
+            margin-top: 10px;
+        }
+
+        .btn {
+            border: none;
+            border-radius: 10px;
+            padding: 13px 22px;
+            font-size: 14px;
+            font-weight: bold;
+            cursor: pointer;
+            text-decoration: none;
+            display: inline-block;
+        }
+
+        .btn-primary {
+            background: #4f46e5;
+            color: white;
+        }
+
+        .btn-primary:hover {
+            background: #4338ca;
+        }
+
+        .btn-secondary {
+            background: #f3f4f6;
+            color: #374151;
+        }
+
+        .btn-secondary:hover {
+            background: #e5e7eb;
+        }
+
+        @media (max-width: 700px) {
+
+            .navbar {
+                padding: 16px 20px;
+            }
+
+            .form-card {
+                padding: 22px;
+            }
+
+            .form-row {
+                grid-template-columns: 1fr;
+                gap: 0;
+            }
+
+            .page-header h1 {
+                font-size: 25px;
+            }
+
+            .buttons {
+                flex-direction: column;
+            }
+
+            .btn {
+                text-align: center;
+            }
+        }
+
+    </style>
+</head>
+
+<body>
+
+    <nav class="navbar">
+
+        <div class="logo">
+            Hire<span>Flow</span>
+        </div>
+
+        <a href="{% url 'recruiter_dashboard' %}" class="back">
+            ← Back to Dashboard
+        </a>
+
+    </nav>
+
+
+    <div class="container">
+
+        <div class="page-header">
+
+            <h1>Post a New Job</h1>
+
+            <p>
+                Create a job opening and start receiving applications.
+            </p>
+
+        </div>
+
+
+        <div class="company-box">
+
+            🏢 <strong>Company:</strong>
+            {{ company_name }}
+
+        </div>
+
+
+        <div class="form-card">
+
+            <form method="POST">
+
+                {% csrf_token %}
+
+
+                <div class="form-group">
+
+                    <label>
+                        Job Title
+                    </label>
+
+                    {{ form.title }}
+
+                    {% if form.title.errors %}
+                        <div class="error">
+                            {{ form.title.errors }}
+                        </div>
+                    {% endif %}
+
+                </div>
+
+
+                <div class="form-row">
+
+                    <div class="form-group">
+
+                        <label>
+                            Location
+                        </label>
+
+                        {{ form.location }}
+
+                        {% if form.location.errors %}
+                            <div class="error">
+                                {{ form.location.errors }}
+                            </div>
+                        {% endif %}
+
+                    </div>
+
+
+                    <div class="form-group">
+
+                        <label>
+                            Job Type
+                        </label>
+
+                        {{ form.job_type }}
+
+                        {% if form.job_type.errors %}
+                            <div class="error">
+                                {{ form.job_type.errors }}
+                            </div>
+                        {% endif %}
+
+                    </div>
+
+                </div>
+
+
+                <div class="form-row">
+
+                    <div class="form-group">
+
+                        <label>
+                            Salary
+                        </label>
+
+                        {{ form.salary }}
+
+                        {% if form.salary.errors %}
+                            <div class="error">
+                                {{ form.salary.errors }}
+                            </div>
+                        {% endif %}
+
+                    </div>
+
+
+                    <div class="form-group">
+
+                        <label>
+                            Required Skills
+                        </label>
+
+                        {{ form.required_skills }}
+
+                        <div class="help-text">
+                            Separate skills using commas.
+                        </div>
+
+                        {% if form.required_skills.errors %}
+                            <div class="error">
+                                {{ form.required_skills.errors }}
+                            </div>
+                        {% endif %}
+
+                    </div>
+
+                </div>
+
+
+                <div class="form-group">
+
+                    <label>
+                        Job Description
+                    </label>
+
+                    {{ form.description }}
+
+                    {% if form.description.errors %}
+                        <div class="error">
+                            {{ form.description.errors }}
+                        </div>
+                    {% endif %}
+
+                </div>
+
+
+                <div class="buttons">
+
+                    <button
+                        type="submit"
+                        class="btn btn-primary"
+                    >
+                        🚀 Publish Job
+                    </button>
+
+                    <a
+                        href="{% url 'recruiter_dashboard' %}"
+                        class="btn btn-secondary"
+                    >
+                        Cancel
+                    </a>
+
+                </div>
+
+            </form>
+
+        </div>
+
+    </div>
+
+</body>
+</html>

@@ -1,0 +1,599 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Manage Jobs | HireFlow</title>
+
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: Arial, Helvetica, sans-serif;
+            background: #f4f6fb;
+            color: #172033;
+        }
+
+        /* NAVBAR */
+
+        .navbar {
+            height: 72px;
+            background: #111827;
+            color: white;
+
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+
+            padding: 0 40px;
+        }
+
+        .logo {
+            font-size: 27px;
+            font-weight: 700;
+        }
+
+        .logo span {
+            color: #6366f1;
+        }
+
+        .nav-links {
+            display: flex;
+            align-items: center;
+            gap: 25px;
+        }
+
+        .nav-links a {
+            color: #e5e7eb;
+            text-decoration: none;
+            font-size: 14px;
+        }
+
+        .nav-links a:hover {
+            color: #818cf8;
+        }
+
+        /* MAIN */
+
+        .container {
+            max-width: 1200px;
+            margin: auto;
+            padding: 40px 25px;
+        }
+
+        .page-header {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+
+            margin-bottom: 30px;
+        }
+
+        .page-header h1 {
+            font-size: 31px;
+            margin-bottom: 7px;
+        }
+
+        .page-header p {
+            color: #6b7280;
+            font-size: 15px;
+        }
+
+        .company {
+            color: #4f46e5;
+            font-weight: 700;
+        }
+
+        /* BUTTON */
+
+        .btn {
+            display: inline-block;
+
+            padding: 11px 18px;
+
+            border-radius: 10px;
+
+            text-decoration: none;
+
+            font-size: 14px;
+            font-weight: 600;
+
+            border: none;
+            cursor: pointer;
+        }
+
+        .btn-primary {
+            background: #4f46e5;
+            color: white;
+        }
+
+        .btn-primary:hover {
+            background: #4338ca;
+        }
+
+        .btn-edit {
+            background: #eef2ff;
+            color: #4338ca;
+        }
+
+        .btn-edit:hover {
+            background: #e0e7ff;
+        }
+
+        .btn-delete {
+            background: #fee2e2;
+            color: #dc2626;
+        }
+
+        .btn-delete:hover {
+            background: #fecaca;
+        }
+
+        /* JOB GRID */
+
+        .jobs-grid {
+            display: grid;
+
+            grid-template-columns:
+                repeat(2, minmax(0, 1fr));
+
+            gap: 22px;
+        }
+
+        /* JOB CARD */
+
+        .job-card {
+            background: white;
+
+            border: 1px solid #eef0f6;
+
+            border-radius: 18px;
+
+            padding: 24px;
+
+            box-shadow:
+                0 8px 25px
+                rgba(15, 23, 42, 0.05);
+        }
+
+        .job-top {
+            display: flex;
+            justify-content: space-between;
+            align-items: flex-start;
+
+            gap: 15px;
+
+            margin-bottom: 18px;
+        }
+
+        .job-title {
+            font-size: 20px;
+            font-weight: 700;
+
+            margin-bottom: 8px;
+        }
+
+        .job-company {
+            color: #6b7280;
+            font-size: 14px;
+        }
+
+        .job-info {
+            display: flex;
+            flex-wrap: wrap;
+
+            gap: 9px;
+
+            margin-bottom: 18px;
+        }
+
+        .badge {
+            background: #f1f5f9;
+
+            color: #475569;
+
+            padding: 7px 10px;
+
+            border-radius: 8px;
+
+            font-size: 12px;
+
+            font-weight: 600;
+        }
+
+        .skills {
+            margin-bottom: 18px;
+        }
+
+        .skills-title {
+            font-size: 13px;
+
+            color: #6b7280;
+
+            margin-bottom: 7px;
+        }
+
+        .skills-text {
+            font-size: 14px;
+
+            color: #334155;
+
+            line-height: 1.6;
+        }
+
+        .job-description {
+            color: #64748b;
+
+            font-size: 14px;
+
+            line-height: 1.6;
+
+            margin-bottom: 20px;
+
+            display: -webkit-box;
+
+            -webkit-line-clamp: 3;
+
+            -webkit-box-orient: vertical;
+
+            overflow: hidden;
+        }
+
+        .job-footer {
+            border-top: 1px solid #eef0f6;
+
+            padding-top: 18px;
+
+            display: flex;
+
+            align-items: center;
+
+            justify-content: space-between;
+        }
+
+        .application-count {
+            color: #4f46e5;
+
+            font-size: 13px;
+
+            font-weight: 600;
+        }
+
+        .actions {
+            display: flex;
+
+            gap: 8px;
+        }
+
+        /* EMPTY STATE */
+
+        .empty-card {
+            background: white;
+
+            border-radius: 18px;
+
+            padding: 60px 25px;
+
+            text-align: center;
+
+            border: 1px solid #eef0f6;
+
+            box-shadow:
+                0 8px 25px
+                rgba(15, 23, 42, 0.05);
+        }
+
+        .empty-icon {
+            width: 65px;
+            height: 65px;
+
+            margin: 0 auto 18px;
+
+            border-radius: 18px;
+
+            background: #eef2ff;
+
+            color: #4f46e5;
+
+            display: flex;
+
+            align-items: center;
+
+            justify-content: center;
+
+            font-size: 28px;
+        }
+
+        .empty-card h2 {
+            margin-bottom: 8px;
+
+            font-size: 21px;
+        }
+
+        .empty-card p {
+            color: #6b7280;
+
+            margin-bottom: 22px;
+
+            font-size: 14px;
+        }
+
+        /* MOBILE */
+
+        @media (max-width: 850px) {
+
+            .jobs-grid {
+                grid-template-columns: 1fr;
+            }
+
+        }
+
+        @media (max-width: 600px) {
+
+            .navbar {
+                padding: 0 18px;
+            }
+
+            .logo {
+                font-size: 23px;
+            }
+
+            .nav-links {
+                gap: 13px;
+            }
+
+            .container {
+                padding: 25px 15px;
+            }
+
+            .page-header {
+                flex-direction: column;
+
+                align-items: flex-start;
+
+                gap: 18px;
+            }
+
+            .page-header h1 {
+                font-size: 26px;
+            }
+
+            .job-footer {
+                flex-direction: column;
+
+                align-items: flex-start;
+
+                gap: 15px;
+            }
+
+        }
+    </style>
+</head>
+
+
+<body>
+
+    <!-- NAVBAR -->
+
+    <nav class="navbar">
+
+        <div class="logo">
+            Hire<span>Flow</span>
+        </div>
+
+        <div class="nav-links">
+
+            <a href="{% url 'recruiter_dashboard' %}">
+                Dashboard
+            </a>
+
+            <a href="{% url 'recruiter_applications' %}">
+                Applications
+            </a>
+
+            <a href="{% url 'logout' %}">
+                Logout
+            </a>
+
+        </div>
+
+    </nav>
+
+
+    <!-- MAIN -->
+
+    <main class="container">
+
+        <!-- HEADER -->
+
+        <div class="page-header">
+
+            <div>
+
+                <h1>
+                    Manage Jobs
+                </h1>
+
+                <p>
+                    Manage job openings for
+                    <span class="company">
+                        {{ company_name }}
+                    </span>
+                </p>
+
+            </div>
+
+
+            <a
+                href="{% url 'post_job' %}"
+                class="btn btn-primary"
+            >
+                + Post New Job
+            </a>
+
+        </div>
+
+
+        <!-- JOBS -->
+
+        {% if jobs %}
+
+            <div class="jobs-grid">
+
+                {% for job in jobs %}
+
+                    <div class="job-card">
+
+                        <!-- TOP -->
+
+                        <div class="job-top">
+
+                            <div>
+
+                                <div class="job-title">
+                                    {{ job.title }}
+                                </div>
+
+                                <div class="job-company">
+                                    {{ job.company }}
+                                </div>
+
+                            </div>
+
+                        </div>
+
+
+                        <!-- JOB INFO -->
+
+                        <div class="job-info">
+
+                            <span class="badge">
+                                📍 {{ job.location }}
+                            </span>
+
+                            <span class="badge">
+                                💼 {{ job.job_type }}
+                            </span>
+
+                            {% if job.salary %}
+
+                                <span class="badge">
+                                    💰 {{ job.salary }}
+                                </span>
+
+                            {% endif %}
+
+                        </div>
+
+
+                        <!-- SKILLS -->
+
+                        <div class="skills">
+
+                            <div class="skills-title">
+                                Required Skills
+                            </div>
+
+                            <div class="skills-text">
+                                {{ job.required_skills }}
+                            </div>
+
+                        </div>
+
+
+                        <!-- DESCRIPTION -->
+
+                        <div class="job-description">
+
+                            {{ job.description }}
+
+                        </div>
+
+
+                        <!-- FOOTER -->
+
+                        <div class="job-footer">
+
+                            <div class="application-count">
+
+                                {{ job.applications.count }}
+                                application{{ job.applications.count|pluralize }}
+
+                            </div>
+
+
+                            <div class="actions">
+
+                                <a
+                                    href="{% url 'edit_job' job.id %}"
+                                    class="btn btn-edit"
+                                >
+                                    Edit
+                                </a>
+
+
+                                <form
+                                    method="POST"
+                                    action="{% url 'delete_job' job.id %}"
+                                    onsubmit="return confirm('Are you sure you want to delete this job?');"
+                                >
+
+                                    {% csrf_token %}
+
+                                    <button
+                                        type="submit"
+                                        class="btn btn-delete"
+                                    >
+                                        Delete
+                                    </button>
+
+                                </form>
+
+                            </div>
+
+                        </div>
+
+                    </div>
+
+                {% endfor %}
+
+            </div>
+
+        {% else %}
+
+            <!-- EMPTY STATE -->
+
+            <div class="empty-card">
+
+                <div class="empty-icon">
+                    💼
+                </div>
+
+                <h2>
+                    No Jobs Posted Yet
+                </h2>
+
+                <p>
+                    Start by creating your first job opening.
+                </p>
+
+                <a
+                    href="{% url 'post_job' %}"
+                    class="btn btn-primary"
+                >
+                    + Post Your First Job
+                </a>
+
+            </div>
+
+        {% endif %}
+
+    </main>
+
+</body>
+</html>

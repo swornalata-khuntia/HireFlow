@@ -1,0 +1,288 @@
+{% load static %}
+
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+    <meta charset="UTF-8">
+
+    <meta
+        name="viewport"
+        content="width=device-width, initial-scale=1.0"
+    >
+
+    <title>HireFlow - Settings</title>
+
+    <link
+        rel="stylesheet"
+        href="{% static 'css/settings.css' %}"
+    >
+
+</head>
+
+<body>
+
+<div class="settings-page">
+
+    <!-- ================= SIDEBAR ================= -->
+
+    <aside class="sidebar">
+
+        <div class="logo">
+            H
+        </div>
+
+        <nav class="sidebar-nav">
+
+            <a href="{% url 'dashboard' %}">
+                🏠
+            </a>
+
+            <a href="{% url 'resume_upload' %}">
+                ✨
+            </a>
+
+            <a href="{% url 'resume_upload' %}">
+                📄
+            </a>
+
+            <a href="{% url 'my_applications' %}">
+                💼
+            </a>
+
+            <a
+                href="{% url 'account_settings' %}"
+                class="active"
+            >
+                ⚙️
+            </a>
+
+            <a href="{% url 'candidate_profile' %}">
+                👤
+            </a>
+
+        </nav>
+
+        <div class="sidebar-bottom">
+
+            <a href="{% url 'logout' %}">
+                ↪
+            </a>
+
+        </div>
+
+    </aside>
+
+
+    <!-- ================= MAIN ================= -->
+
+    <main class="main-content">
+
+        <div class="top-bar">
+
+            <div>
+
+                <h1>
+                    Account Settings
+                </h1>
+
+                <p>
+                    Manage your HireFlow account and security.
+                </p>
+
+            </div>
+
+            <a
+                href="{% url 'dashboard' %}"
+                class="back-button"
+            >
+                ← Dashboard
+            </a>
+
+        </div>
+
+
+        <!-- ================= ACCOUNT ================= -->
+
+        <section class="settings-card">
+
+            <div class="card-header">
+
+                <div>
+
+                    <h2>
+                        Account Information
+                    </h2>
+
+                    <p>
+                        Update your account email address.
+                    </p>
+
+                </div>
+
+            </div>
+
+
+            <form method="POST">
+
+                {% csrf_token %}
+
+                <div class="form-group">
+
+                    <label>
+                        Username
+                    </label>
+
+                    <input
+                        type="text"
+                        value="{{ user.username }}"
+                        disabled
+                    >
+
+                    <small>
+                        Username cannot be changed here.
+                    </small>
+
+                </div>
+
+
+                <div class="form-group">
+
+                    <label for="email">
+                        Email Address
+                    </label>
+
+                    <input
+                        type="email"
+                        id="email"
+                        name="email"
+                        value="{{ user.email }}"
+                        placeholder="Enter your email"
+                    >
+
+                </div>
+
+
+                <button
+                    type="submit"
+                    class="primary-button"
+                >
+                    Save Changes
+                </button>
+
+            </form>
+
+        </section>
+
+
+        <!-- ================= PASSWORD ================= -->
+
+        <section class="settings-card">
+
+            <div class="card-header">
+
+                <div>
+
+                    <h2>
+                        Change Password
+                    </h2>
+
+                    <p>
+                        Keep your HireFlow account secure.
+                    </p>
+
+                </div>
+
+            </div>
+
+
+            <form method="POST">
+
+                {% csrf_token %}
+
+                {% for field in password_form %}
+
+                    <div class="form-group">
+
+                        <label for="{{ field.id_for_label }}">
+                            {{ field.label }}
+                        </label>
+
+                        {{ field }}
+
+                        {% if field.help_text %}
+
+                            <small>
+                                {{ field.help_text }}
+                            </small>
+
+                        {% endif %}
+
+                        {% for error in field.errors %}
+
+                            <div class="error">
+                                {{ error }}
+                            </div>
+
+                        {% endfor %}
+
+                    </div>
+
+                {% endfor %}
+
+
+                <button
+                    type="submit"
+                    class="primary-button"
+                >
+                    Update Password
+                </button>
+
+            </form>
+
+        </section>
+
+
+        <!-- ================= PROFILE ================= -->
+
+        <section class="settings-card profile-card">
+
+            <div class="profile-icon">
+                👤
+            </div>
+
+            <div class="profile-info">
+
+                <h2>
+                    Your Profile
+                </h2>
+
+                <p>
+                    Update your personal profile information.
+                </p>
+
+            </div>
+
+            <a
+                href="{% url 'candidate_profile' %}"
+                class="secondary-button"
+            >
+                Open Profile
+            </a>
+
+        </section>
+
+
+    </main>
+
+</div>
+
+
+<script
+    src="{% static 'js/settings.js' %}"
+></script>
+
+</body>
+
+</html>

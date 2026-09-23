@@ -1,0 +1,526 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+    <meta charset="UTF-8">
+
+    <meta name="viewport"
+          content="width=device-width, initial-scale=1.0">
+
+    <title>HireFlow | AI Job Matches</title>
+
+    <style>
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: Arial, sans-serif;
+            background: #f5f7fb;
+            color: #172033;
+        }
+
+        .container {
+            width: 92%;
+            max-width: 1100px;
+            margin: 40px auto;
+        }
+
+        .header {
+            background: linear-gradient(
+                135deg,
+                #182848,
+                #4b3f9b
+            );
+
+            color: white;
+            padding: 35px;
+            border-radius: 20px;
+            margin-bottom: 25px;
+        }
+
+        .header h1 {
+            font-size: 30px;
+            margin-bottom: 10px;
+        }
+
+        .header p {
+            color: #dce3ff;
+            font-size: 14px;
+        }
+
+        .resume-skills {
+            background: white;
+            padding: 22px;
+            border-radius: 16px;
+            margin-bottom: 25px;
+
+            box-shadow:
+                0 5px 20px rgba(0, 0, 0, 0.05);
+        }
+
+        .resume-skills h3 {
+            margin-bottom: 15px;
+        }
+
+        .skill {
+            display: inline-block;
+            padding: 7px 12px;
+            background: #eef2ff;
+            color: #4338ca;
+            border-radius: 20px;
+            font-size: 12px;
+            margin: 4px;
+            font-weight: 600;
+        }
+
+        .job-card {
+            background: white;
+            padding: 25px;
+            border-radius: 18px;
+            margin-bottom: 18px;
+
+            box-shadow:
+                0 5px 20px rgba(0, 0, 0, 0.05);
+
+            transition: 0.2s;
+        }
+
+        .job-card:hover {
+            transform: translateY(-2px);
+
+            box-shadow:
+                0 10px 30px rgba(0, 0, 0, 0.08);
+        }
+
+        .job-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: flex-start;
+            gap: 20px;
+        }
+
+        .job-title {
+            font-size: 21px;
+            font-weight: 700;
+        }
+
+        .company {
+            margin-top: 7px;
+            color: #6f7788;
+            font-size: 14px;
+        }
+
+        .match {
+            background: #ecfdf5;
+            color: #047857;
+            padding: 9px 14px;
+            border-radius: 20px;
+            font-size: 12px;
+            font-weight: 700;
+            white-space: nowrap;
+        }
+
+        .job-details {
+            margin-top: 15px;
+            display: flex;
+            flex-wrap: wrap;
+            gap: 10px;
+        }
+
+        .detail {
+            background: #f5f6fa;
+            padding: 8px 12px;
+            border-radius: 8px;
+            font-size: 12px;
+            color: #555e70;
+        }
+
+        .description {
+            margin-top: 17px;
+            color: #60697a;
+            line-height: 1.6;
+            font-size: 14px;
+        }
+
+        .skills-section {
+            margin-top: 18px;
+        }
+
+        .skills-section h4 {
+            font-size: 13px;
+            margin-bottom: 8px;
+        }
+
+        .matched {
+            display: inline-block;
+            background: #ecfdf5;
+            color: #047857;
+            padding: 6px 10px;
+            border-radius: 15px;
+            font-size: 11px;
+            margin: 3px;
+        }
+
+        .missing {
+            display: inline-block;
+            background: #fff1f2;
+            color: #be123c;
+            padding: 6px 10px;
+            border-radius: 15px;
+            font-size: 11px;
+            margin: 3px;
+        }
+
+        .actions {
+            margin-top: 22px;
+            display: flex;
+            gap: 10px;
+            flex-wrap: wrap;
+        }
+
+        .apply-btn {
+            display: inline-block;
+            padding: 12px 20px;
+            background: #4338ca;
+            color: white;
+            text-decoration: none;
+            border-radius: 10px;
+            font-size: 13px;
+            font-weight: 700;
+            transition: 0.2s;
+        }
+
+        .apply-btn:hover {
+            background: #312e81;
+        }
+
+        .applications-btn {
+            display: inline-block;
+            padding: 12px 20px;
+            background: #eef2ff;
+            color: #4338ca;
+            text-decoration: none;
+            border-radius: 10px;
+            font-size: 13px;
+            font-weight: 700;
+        }
+
+        .no-resume {
+            background: white;
+            padding: 45px;
+            text-align: center;
+            border-radius: 18px;
+        }
+
+        .no-resume h2 {
+            margin-bottom: 10px;
+        }
+
+        .no-resume p {
+            color: #737b8c;
+            margin-bottom: 20px;
+        }
+
+        .upload-btn {
+            display: inline-block;
+            padding: 12px 20px;
+            background: #4338ca;
+            color: white;
+            text-decoration: none;
+            border-radius: 10px;
+            font-size: 13px;
+            font-weight: 600;
+        }
+
+        .back-btn {
+            display: inline-block;
+            margin-top: 20px;
+            color: #4338ca;
+            text-decoration: none;
+            font-size: 14px;
+            font-weight: 600;
+        }
+
+        .no-match {
+            color: #777;
+            font-size: 13px;
+        }
+
+        @media (max-width: 700px) {
+
+            .container {
+                width: 94%;
+                margin: 20px auto;
+            }
+
+            .header {
+                padding: 25px;
+            }
+
+            .header h1 {
+                font-size: 24px;
+            }
+
+            .job-header {
+                flex-direction: column;
+            }
+
+            .match {
+                align-self: flex-start;
+            }
+
+        }
+
+    </style>
+
+</head>
+
+
+<body>
+
+<div class="container">
+
+
+    <div class="header">
+
+        <h1>
+            AI Job Matches
+        </h1>
+
+        <p>
+            Jobs matched with your resume skills using HireFlow's matching engine.
+        </p>
+
+    </div>
+
+
+    {% if latest_resume %}
+
+
+        <div class="resume-skills">
+
+            <h3>
+                Skills Detected From Your Resume
+            </h3>
+
+            {% if resume_skills %}
+
+                {% for skill in resume_skills %}
+
+                    <span class="skill">
+                        {{ skill }}
+                    </span>
+
+                {% endfor %}
+
+            {% else %}
+
+                <p class="no-match">
+                    No supported skills detected in your resume.
+                </p>
+
+            {% endif %}
+
+        </div>
+
+
+        {% if results %}
+
+
+            {% for result in results %}
+
+                <div class="job-card">
+
+                    <div class="job-header">
+
+                        <div>
+
+                            <div class="job-title">
+                                {{ result.job.title }}
+                            </div>
+
+                            <div class="company">
+                                {{ result.job.company }}
+                            </div>
+
+                        </div>
+
+
+                        <div class="match">
+
+                            {{ result.match_percentage }}% Match
+
+                        </div>
+
+                    </div>
+
+
+                    <div class="job-details">
+
+                        <span class="detail">
+                            📍 {{ result.job.location }}
+                        </span>
+
+                        <span class="detail">
+                            💼 {{ result.job.job_type }}
+                        </span>
+
+                        {% if result.job.salary %}
+
+                            <span class="detail">
+                                💰 {{ result.job.salary }}
+                            </span>
+
+                        {% endif %}
+
+                    </div>
+
+
+                    <div class="description">
+
+                        {{ result.job.description }}
+
+                    </div>
+
+
+                    <div class="skills-section">
+
+                        <h4>
+                            Matched Skills
+                        </h4>
+
+                        {% if result.matched_skills %}
+
+                            {% for skill in result.matched_skills %}
+
+                                <span class="matched">
+                                    ✓ {{ skill }}
+                                </span>
+
+                            {% endfor %}
+
+                        {% else %}
+
+                            <span class="no-match">
+                                No matched skills
+                            </span>
+
+                        {% endif %}
+
+                    </div>
+
+
+                    <div class="skills-section">
+
+                        <h4>
+                            Skills To Improve
+                        </h4>
+
+                        {% if result.missing_skills %}
+
+                            {% for skill in result.missing_skills %}
+
+                                <span class="missing">
+                                    + {{ skill }}
+                                </span>
+
+                            {% endfor %}
+
+                        {% else %}
+
+                            <span class="matched">
+                                ✓ All required skills matched
+                            </span>
+
+                        {% endif %}
+
+                    </div>
+
+
+                    <div class="actions">
+
+                        <a href="{% url 'apply_job' result.job.id %}"
+                           class="apply-btn">
+
+                            Apply Now →
+
+                        </a>
+
+                        <a href="{% url 'my_applications' %}"
+                           class="applications-btn">
+
+                            My Applications
+
+                        </a>
+
+                    </div>
+
+
+                </div>
+
+            {% endfor %}
+
+
+        {% else %}
+
+
+            <div class="no-resume">
+
+                <h2>
+                    No Jobs Available
+                </h2>
+
+                <p>
+                    There are currently no jobs available for matching.
+                </p>
+
+            </div>
+
+
+        {% endif %}
+
+
+    {% else %}
+
+
+        <div class="no-resume">
+
+            <h2>
+                Upload Your Resume
+            </h2>
+
+            <p>
+                Upload your resume first to get AI-powered job recommendations.
+            </p>
+
+            <a href="{% url 'resume_upload' %}"
+               class="upload-btn">
+
+                Upload Resume →
+
+            </a>
+
+        </div>
+
+
+    {% endif %}
+
+
+    <a href="{% url 'dashboard' %}"
+       class="back-btn">
+
+        ← Back to Dashboard
+
+    </a>
+
+
+</div>
+
+</body>
+
+</html>

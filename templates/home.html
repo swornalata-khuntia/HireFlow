@@ -1,0 +1,1391 @@
+{% load static %}
+
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>HireFlow | AI-Powered Recruitment Platform</title>
+
+    <meta name="description"
+        content="HireFlow is an AI-powered recruitment platform connecting talented candidates with the right opportunities.">
+
+    <!-- CSS -->
+    <link rel="stylesheet" href="{% static 'css/style.css' %}">
+</head>
+
+<body>
+
+    <!-- =========================
+         NAVBAR
+    ========================== -->
+
+    <header class="navbar">
+
+        <div class="container nav-container">
+
+            <a href="/" class="logo">
+                <span class="logo-icon">H</span>
+                <span>Hire<span class="logo-highlight">Flow</span></span>
+            </a>
+
+            <nav class="nav-menu">
+
+                <a href="#home" class="nav-link active">
+                    Home
+                </a>
+
+                <a href="#features" class="nav-link">
+                    Features
+                </a>
+
+                <a href="#how-it-works" class="nav-link">
+                    How It Works
+                </a>
+
+                <a href="#about" class="nav-link">
+                    About
+                </a>
+
+            </nav>
+
+            <div class="nav-actions">
+
+                <a href="/accounts/login/" class="btn btn-outline">
+                    Login
+                </a>
+
+                <a href="/accounts/signup/" class="btn btn-primary">
+                    Get Started
+                </a>
+
+            </div>
+
+            <button class="mobile-menu-btn" id="mobileMenuBtn" aria-label="Open Menu">
+                ☰
+            </button>
+
+        </div>
+
+    </header>
+
+
+    <!-- =========================
+         MOBILE MENU
+    ========================== -->
+
+    <div class="mobile-menu" id="mobileMenu">
+
+        <a href="#home">Home</a>
+
+        <a href="#features">Features</a>
+
+        <a href="#how-it-works">How It Works</a>
+
+        <a href="#about">About</a>
+
+        <a href="/accounts/login/">Login</a>
+
+        <a href="/accounts/signup/" class="mobile-signup">
+            Get Started
+        </a>
+
+    </div>
+
+
+    <!-- =========================
+         HERO SECTION
+    ========================== -->
+
+    <main>
+
+        <section class="hero" id="home">
+
+            <div class="container hero-container">
+
+                <div class="hero-content">
+
+                    <div class="hero-badge">
+                        <span>✦</span>
+                        AI-Powered Recruitment Platform
+                    </div>
+
+                    <h1 class="hero-title">
+
+                        Hire Smarter.
+                        <br>
+
+                        <span class="gradient-text">
+                            Build Faster.
+                        </span>
+
+                    </h1>
+
+                    <p class="hero-description">
+
+                        HireFlow connects talented candidates with
+                        the right opportunities using intelligent
+                        resume analysis, smart job matching and
+                        modern recruitment tools.
+
+                    </p>
+
+                    <div class="hero-buttons">
+
+                        <a href="/dashboard/" class="btn btn-primary btn-large">
+                            Find Your Next Job
+                            <span>→</span>
+                        </a>
+
+                        <a href="#how-it-works" class="btn btn-outline btn-large">
+                            Explore Platform
+                        </a>
+
+                    </div>
+
+                    <div class="hero-trust">
+
+                        <div class="trust-item">
+                            <span class="trust-icon">✓</span>
+                            Smart Job Matching
+                        </div>
+
+                        <div class="trust-item">
+                            <span class="trust-icon">✓</span>
+                            AI Resume Analysis
+                        </div>
+
+                        <div class="trust-item">
+                            <span class="trust-icon">✓</span>
+                            Secure Platform
+                        </div>
+
+                    </div>
+
+                </div>
+
+
+                <!-- HERO DASHBOARD PREVIEW -->
+
+                <div class="hero-visual">
+
+                    <div class="dashboard-window">
+
+                        <div class="window-topbar">
+
+                            <div class="window-dots">
+
+                                <span></span>
+                                <span></span>
+                                <span></span>
+
+                            </div>
+
+                            <div class="window-title">
+                                HireFlow Dashboard
+                            </div>
+
+                            <div class="window-menu">
+                                ⋯
+                            </div>
+
+                        </div>
+
+
+                        <div class="dashboard-content">
+
+                            <div class="dashboard-sidebar">
+
+                                <div class="sidebar-logo">
+                                    H
+                                </div>
+
+                                <div class="sidebar-item active">
+                                    ◉
+                                </div>
+
+                                <div class="sidebar-item">
+                                    ◫
+                                </div>
+
+                                <div class="sidebar-item">
+                                    ♢
+                                </div>
+
+                                <div class="sidebar-item">
+                                    ◎
+                                </div>
+
+                            </div>
+
+
+                            <div class="dashboard-main">
+
+                                <div class="dashboard-header">
+
+                                    <div>
+
+                                        <p class="dashboard-small">
+                                            Welcome back
+                                        </p>
+
+                                        <h3>
+                                            Candidate Dashboard
+                                        </h3>
+
+                                    </div>
+
+                                    <div class="profile-circle">
+                                        C
+                                    </div>
+
+                                </div>
+
+
+                                <!-- STATS -->
+
+                                <div class="stats-grid">
+
+                                    <div class="stat-box">
+
+                                        <div class="stat-icon purple">
+                                            ▣
+                                        </div>
+
+                                        <div>
+
+                                            <span>
+                                                Applications
+                                            </span>
+
+                                            <strong>
+                                                24
+                                            </strong>
+
+                                        </div>
+
+                                    </div>
+
+
+                                    <div class="stat-box">
+
+                                        <div class="stat-icon blue">
+                                            ◉
+                                        </div>
+
+                                        <div>
+
+                                            <span>
+                                                Interviews
+                                            </span>
+
+                                            <strong>
+                                                08
+                                            </strong>
+
+                                        </div>
+
+                                    </div>
+
+
+                                    <div class="stat-box">
+
+                                        <div class="stat-icon green">
+                                            ✓
+                                        </div>
+
+                                        <div>
+
+                                            <span>
+                                                Job Matches
+                                            </span>
+
+                                            <strong>
+                                                92%
+                                            </strong>
+
+                                        </div>
+
+                                    </div>
+
+                                </div>
+
+
+                                <!-- MATCH SCORE -->
+
+                                <div class="match-card">
+
+                                    <div class="match-info">
+
+                                        <div>
+
+                                            <span class="card-label">
+                                                Resume Match Score
+                                            </span>
+
+                                            <h4>
+                                                Your profile is looking great!
+                                            </h4>
+
+                                        </div>
+
+                                        <strong class="match-score">
+                                            92%
+                                        </strong>
+
+                                    </div>
+
+                                    <div class="progress-bar">
+
+                                        <div class="progress-value"></div>
+
+                                    </div>
+
+                                </div>
+
+
+                                <!-- RECOMMENDED JOBS -->
+
+                                <div class="section-heading">
+
+                                    <h4>
+                                        Recommended Jobs
+                                    </h4>
+
+                                    <a href="#features">
+                                        View All
+                                    </a>
+
+                                </div>
+
+
+                                <div class="mini-job">
+
+                                    <div class="company-logo purple-logo">
+                                        P
+                                    </div>
+
+                                    <div class="job-info">
+
+                                        <strong>
+                                            Python Django Developer
+                                        </strong>
+
+                                        <span>
+                                            Tech Solutions · Remote
+                                        </span>
+
+                                    </div>
+
+                                    <span class="match-tag">
+                                        96% Match
+                                    </span>
+
+                                </div>
+
+
+                                <div class="mini-job">
+
+                                    <div class="company-logo blue-logo">
+                                        J
+                                    </div>
+
+                                    <div class="job-info">
+
+                                        <strong>
+                                            Java Backend Developer
+                                        </strong>
+
+                                        <span>
+                                            Software Labs · Bangalore
+                                        </span>
+
+                                    </div>
+
+                                    <span class="match-tag">
+                                        91% Match
+                                    </span>
+
+                                </div>
+
+                            </div>
+
+                        </div>
+
+                    </div>
+
+                    <!-- FLOATING CARD -->
+
+                    <div class="floating-card floating-top">
+
+                        <div class="floating-icon">
+                            ✦
+                        </div>
+
+                        <div>
+
+                            <strong>
+                                AI Match Found
+                            </strong>
+
+                            <span>
+                                96% compatibility
+                            </span>
+
+                        </div>
+
+                    </div>
+
+
+                    <div class="floating-card floating-bottom">
+
+                        <div class="success-icon">
+                            ✓
+                        </div>
+
+                        <div>
+
+                            <strong>
+                                Application Sent
+                            </strong>
+
+                            <span>
+                                Just now
+                            </span>
+
+                        </div>
+
+                    </div>
+
+                </div>
+
+            </div>
+
+        </section>
+
+
+        <!-- =========================
+             STATS SECTION
+        ========================== -->
+
+        <section class="platform-stats">
+
+            <div class="container stats-container">
+
+                <div class="platform-stat">
+
+                    <strong>
+                        10K+
+                    </strong>
+
+                    <span>
+                        Job Opportunities
+                    </span>
+
+                </div>
+
+                <div class="platform-stat">
+
+                    <strong>
+                        5K+
+                    </strong>
+
+                    <span>
+                        Active Candidates
+                    </span>
+
+                </div>
+
+                <div class="platform-stat">
+
+                    <strong>
+                        500+
+                    </strong>
+
+                    <span>
+                        Hiring Companies
+                    </span>
+
+                </div>
+
+                <div class="platform-stat">
+
+                    <strong>
+                        90%
+                    </strong>
+
+                    <span>
+                        Smart Match Accuracy
+                    </span>
+
+                </div>
+
+            </div>
+
+        </section>
+
+
+        <!-- =========================
+             FEATURES SECTION
+        ========================== -->
+
+        <section class="features section-padding" id="features">
+
+            <div class="container">
+
+                <div class="section-header">
+
+                    <span class="section-badge">
+                        POWERFUL FEATURES
+                    </span>
+
+                    <h2>
+                        Everything You Need to
+                        <span class="gradient-text">
+                            Get Hired
+                        </span>
+                    </h2>
+
+                    <p>
+                        HireFlow combines AI-powered technology
+                        with simple recruitment tools to make
+                        the hiring process faster and smarter.
+                    </p>
+
+                </div>
+
+
+                <div class="feature-grid">
+
+
+                    <!-- FEATURE 1 -->
+
+                    <div class="feature-card">
+
+                        <div class="feature-icon purple">
+                            📄
+                        </div>
+
+                        <h3>
+                            AI Resume Analyzer
+                        </h3>
+
+                        <p>
+                            Upload your resume and let HireFlow
+                            analyze your skills, experience and
+                            profile strength automatically.
+                        </p>
+
+                        <a href="/accounts/login/">
+                            Analyze Resume →
+                        </a>
+
+                    </div>
+
+
+                    <!-- FEATURE 2 -->
+
+                    <div class="feature-card">
+
+                        <div class="feature-icon blue">
+                            🎯
+                        </div>
+
+                        <h3>
+                            Smart Job Matching
+                        </h3>
+
+                        <p>
+                            Find relevant opportunities based on
+                            your skills, experience and resume
+                            compatibility.
+                        </p>
+
+                        <a href="/accounts/login/">
+                            Find Jobs →
+                        </a>
+
+                    </div>
+
+
+                    <!-- FEATURE 3 -->
+
+                    <div class="feature-card">
+
+                        <div class="feature-icon green">
+                            📊
+                        </div>
+
+                        <h3>
+                            Recruitment Analytics
+                        </h3>
+
+                        <p>
+                            Recruiters can track applications,
+                            candidates and hiring performance
+                            from one dashboard.
+                        </p>
+
+                        <a href="/accounts/login/">
+                            View Analytics →
+                        </a>
+
+                    </div>
+
+
+                    <!-- FEATURE 4 -->
+
+                    <div class="feature-card">
+
+                        <div class="feature-icon orange">
+                            🔐
+                        </div>
+
+                        <h3>
+                            Secure Authentication
+                        </h3>
+
+                        <p>
+                            Role-based authentication helps keep
+                            candidate and recruiter information
+                            protected.
+                        </p>
+
+                        <a href="#about">
+                            Learn More →
+                        </a>
+
+                    </div>
+
+
+                    <!-- FEATURE 5 -->
+
+                    <div class="feature-card">
+
+                        <div class="feature-icon pink">
+                            🏢
+                        </div>
+
+                        <h3>
+                            Recruiter Dashboard
+                        </h3>
+
+                        <p>
+                            Manage job postings, applications and
+                            candidate profiles from a centralized
+                            recruiter dashboard.
+                        </p>
+
+                        <a href="/accounts/login/">
+                            For Recruiters →
+                        </a>
+
+                    </div>
+
+
+                    <!-- FEATURE 6 -->
+
+                    <div class="feature-card">
+
+                        <div class="feature-icon cyan">
+                            ⚡
+                        </div>
+
+                        <h3>
+                            Fast Application Tracking
+                        </h3>
+
+                        <p>
+                            Track every application from submitted
+                            to interview and final selection.
+                        </p>
+
+                        <a href="/accounts/login/">
+                            Track Applications →
+                        </a>
+
+                    </div>
+
+                </div>
+
+            </div>
+
+        </section>
+
+
+        <!-- =========================
+             HOW IT WORKS
+        ========================== -->
+
+        <section class="how-it-works section-padding" id="how-it-works">
+
+            <div class="container">
+
+                <div class="section-header">
+
+                    <span class="section-badge">
+                        SIMPLE PROCESS
+                    </span>
+
+                    <h2>
+                        How <span class="gradient-text">HireFlow</span> Works
+                    </h2>
+
+                    <p>
+                        A simple workflow designed for both
+                        candidates and recruiters.
+                    </p>
+
+                </div>
+
+
+                <div class="steps-container">
+
+
+                    <!-- STEP 1 -->
+
+                    <div class="step-card">
+
+                        <div class="step-number">
+                            01
+                        </div>
+
+                        <div class="step-icon">
+                            👤
+                        </div>
+
+                        <h3>
+                            Create Your Profile
+                        </h3>
+
+                        <p>
+                            Sign up and create your professional
+                            profile with your skills and experience.
+                        </p>
+
+                    </div>
+
+
+                    <div class="step-line"></div>
+
+
+                    <!-- STEP 2 -->
+
+                    <div class="step-card">
+
+                        <div class="step-number">
+                            02
+                        </div>
+
+                        <div class="step-icon">
+                            📄
+                        </div>
+
+                        <h3>
+                            Upload Your Resume
+                        </h3>
+
+                        <p>
+                            Upload your resume and let our analyzer
+                            extract your professional information.
+                        </p>
+
+                    </div>
+
+
+                    <div class="step-line"></div>
+
+
+                    <!-- STEP 3 -->
+
+                    <div class="step-card">
+
+                        <div class="step-number">
+                            03
+                        </div>
+
+                        <div class="step-icon">
+                            🧠
+                        </div>
+
+                        <h3>
+                            Get Smart Matches
+                        </h3>
+
+                        <p>
+                            Our matching system identifies jobs
+                            that fit your skills and profile.
+                        </p>
+
+                    </div>
+
+
+                    <div class="step-line"></div>
+
+
+                    <!-- STEP 4 -->
+
+                    <div class="step-card">
+
+                        <div class="step-number">
+                            04
+                        </div>
+
+                        <div class="step-icon">
+                            🚀
+                        </div>
+
+                        <h3>
+                            Apply & Get Hired
+                        </h3>
+
+                        <p>
+                            Apply to suitable jobs and track your
+                            application progress from one place.
+                        </p>
+
+                    </div>
+
+                </div>
+
+            </div>
+
+        </section>
+
+
+        <!-- =========================
+             CANDIDATE SECTION
+        ========================== -->
+
+        <section class="candidate-section section-padding">
+
+            <div class="container candidate-container">
+
+                <div class="candidate-content">
+
+                    <span class="section-badge">
+                        FOR CANDIDATES
+                    </span>
+
+                    <h2>
+                        Your Career.
+                        <br>
+                        <span class="gradient-text">
+                            Your Flow.
+                        </span>
+                    </h2>
+
+                    <p>
+                        Stop searching through hundreds of irrelevant
+                        job listings. HireFlow helps you discover
+                        opportunities that match your actual skills.
+                    </p>
+
+
+                    <ul class="check-list">
+
+                        <li>
+                            <span>✓</span>
+                            Personalized job recommendations
+                        </li>
+
+                        <li>
+                            <span>✓</span>
+                            AI-powered resume analysis
+                        </li>
+
+                        <li>
+                            <span>✓</span>
+                            Application tracking
+                        </li>
+
+                        <li>
+                            <span>✓</span>
+                            Profile and skill management
+                        </li>
+
+                    </ul>
+
+
+                    <a href="/accounts/signup/" class="btn btn-primary">
+                        Create Candidate Profile →
+                    </a>
+
+                </div>
+
+
+                <div class="candidate-visual">
+
+                    <div class="resume-card">
+
+                        <div class="resume-header">
+
+                            <div class="resume-avatar">
+                                C
+                            </div>
+
+                            <div>
+
+                                <strong>
+                                    Candidate Profile
+                                </strong>
+
+                                <span>
+                                    Software Developer
+                                </span>
+
+                            </div>
+
+                        </div>
+
+
+                        <div class="resume-score">
+
+                            <div>
+
+                                <span>
+                                    Profile Strength
+                                </span>
+
+                                <strong>
+                                    92%
+                                </strong>
+
+                            </div>
+
+                            <div class="circular-progress">
+                                92%
+                            </div>
+
+                        </div>
+
+
+                        <div class="skills-preview">
+
+                            <span>Python</span>
+                            <span>Django</span>
+                            <span>Java</span>
+                            <span>SQL</span>
+                            <span>JavaScript</span>
+
+                        </div>
+
+                    </div>
+
+                </div>
+
+            </div>
+
+        </section>
+
+
+        <!-- =========================
+             RECRUITER SECTION
+        ========================== -->
+
+        <section class="recruiter-section section-padding">
+
+            <div class="container recruiter-container">
+
+                <div class="recruiter-visual">
+
+                    <div class="analytics-card">
+
+                        <div class="analytics-header">
+
+                            <div>
+
+                                <span>
+                                    Recruitment Overview
+                                </span>
+
+                                <h3>
+                                    Candidate Analytics
+                                </h3>
+
+                            </div>
+
+                            <span class="analytics-period">
+                                This Month
+                            </span>
+
+                        </div>
+
+
+                        <div class="analytics-stats">
+
+                            <div>
+                                <span>Total Applicants</span>
+                                <strong>1,284</strong>
+                            </div>
+
+                            <div>
+                                <span>Shortlisted</span>
+                                <strong>326</strong>
+                            </div>
+
+                            <div>
+                                <span>Interviews</span>
+                                <strong>84</strong>
+                            </div>
+
+                        </div>
+
+
+                        <div class="chart-placeholder">
+
+                            <div class="chart-bars">
+
+                                <span style="height:45%"></span>
+                                <span style="height:65%"></span>
+                                <span style="height:52%"></span>
+                                <span style="height:78%"></span>
+                                <span style="height:60%"></span>
+                                <span style="height:90%"></span>
+                                <span style="height:72%"></span>
+
+                            </div>
+
+                        </div>
+
+                    </div>
+
+                </div>
+
+
+                <div class="recruiter-content">
+
+                    <span class="section-badge">
+                        FOR RECRUITERS
+                    </span>
+
+                    <h2>
+                        Find the Right Talent.
+                        <br>
+                        <span class="gradient-text">
+                            Faster.
+                        </span>
+                    </h2>
+
+                    <p>
+                        HireFlow gives recruiters intelligent tools
+                        to manage job postings, discover candidates
+                        and streamline the hiring process.
+                    </p>
+
+
+                    <ul class="check-list">
+
+                        <li>
+                            <span>✓</span>
+                            Intelligent candidate matching
+                        </li>
+
+                        <li>
+                            <span>✓</span>
+                            Job posting management
+                        </li>
+
+                        <li>
+                            <span>✓</span>
+                            Candidate pipeline tracking
+                        </li>
+
+                        <li>
+                            <span>✓</span>
+                            Recruitment analytics
+                        </li>
+
+                    </ul>
+
+
+                    <a href="/accounts/login/" class="btn btn-primary">
+                        Start Hiring →
+                    </a>
+
+                </div>
+
+            </div>
+
+        </section>
+
+
+        <!-- =========================
+             ABOUT SECTION
+        ========================== -->
+
+        <section class="about-section section-padding" id="about">
+
+            <div class="container">
+
+                <div class="about-box">
+
+                    <div class="about-content">
+
+                        <span class="section-badge">
+                            ABOUT HIREFLOW
+                        </span>
+
+                        <h2>
+                            Making Recruitment
+                            <span class="gradient-text">
+                                Smarter.
+                            </span>
+                        </h2>
+
+                        <p>
+                            HireFlow is designed as a modern recruitment
+                            ecosystem where candidates can discover
+                            meaningful opportunities and recruiters can
+                            identify suitable talent efficiently.
+                        </p>
+
+                        <p>
+                            By combining web technology, data-driven
+                            matching and AI-powered resume analysis,
+                            HireFlow simplifies the recruitment journey
+                            for everyone involved.
+                        </p>
+
+                    </div>
+
+
+                    <div class="about-highlights">
+
+                        <div class="highlight-box">
+
+                            <strong>
+                                AI
+                            </strong>
+
+                            <span>
+                                Intelligent
+                                Matching
+                            </span>
+
+                        </div>
+
+                        <div class="highlight-box">
+
+                            <strong>
+                                24/7
+                            </strong>
+
+                            <span>
+                                Platform
+                                Access
+                            </span>
+
+                        </div>
+
+                        <div class="highlight-box">
+
+                            <strong>
+                                360°
+                            </strong>
+
+                            <span>
+                                Recruitment
+                                View
+                            </span>
+
+                        </div>
+
+                    </div>
+
+                </div>
+
+            </div>
+
+        </section>
+
+
+        <!-- =========================
+             CTA SECTION
+        ========================== -->
+
+        <section class="cta-section">
+
+            <div class="container">
+
+                <div class="cta-box">
+
+                    <div class="cta-content">
+
+                        <span class="cta-icon">
+                            ✦
+                        </span>
+
+                        <h2>
+                            Ready to Build Your
+                            <span>
+                                Career Flow?
+                            </span>
+                        </h2>
+
+                        <p>
+                            Create your profile today and discover
+                            smarter opportunities with HireFlow.
+                        </p>
+
+                    </div>
+
+                    <div class="cta-buttons">
+
+                        <a href="/accounts/signup/" class="btn btn-white btn-large">
+                            Get Started →
+                        </a>
+
+                        <a href="#features" class="btn btn-transparent btn-large">
+                            Explore Features
+                        </a>
+
+                    </div>
+
+                </div>
+
+            </div>
+
+        </section>
+
+    </main>
+
+
+    <!-- =========================
+         FOOTER
+    ========================== -->
+
+    <footer class="footer">
+
+        <div class="container">
+
+            <div class="footer-grid">
+
+
+                <div class="footer-brand">
+
+                    <a href="/" class="logo footer-logo">
+
+                        <span class="logo-icon">
+                            H
+                        </span>
+
+                        <span>
+                            Hire<span class="logo-highlight">
+                                Flow
+                            </span>
+                        </span>
+
+                    </a>
+
+                    <p>
+                        AI-powered recruitment platform connecting
+                        talent with opportunity.
+                    </p>
+
+                </div>
+
+
+                <div class="footer-column">
+
+                    <h4>
+                        Platform
+                    </h4>
+
+                    <a href="#features">
+                        Features
+                    </a>
+
+                    <a href="/accounts/login/">
+                        Find Jobs
+                    </a>
+
+                    <a href="/accounts/login/">
+                        Resume Analyzer
+                    </a>
+
+                    <a href="/accounts/login/">
+                        Recruiter Dashboard
+                    </a>
+
+                </div>
+
+
+                <div class="footer-column">
+
+                    <h4>
+                        Company
+                    </h4>
+
+                    <a href="#about">
+                        About
+                    </a>
+
+                    <a href="#about">
+                        Contact
+                    </a>
+
+                    <a href="#about">
+                        Privacy Policy
+                    </a>
+
+                    <a href="#about">
+                        Terms
+                    </a>
+
+                </div>
+
+
+                <div class="footer-column">
+
+                    <h4>
+                        Connect
+                    </h4>
+
+                    <div class="social-links">
+
+                        <a href="#about" aria-label="LinkedIn">
+                            in
+                        </a>
+
+                        <a href="#about" aria-label="GitHub">
+                            Git
+                        </a>
+
+                        <a href="#about" aria-label="Twitter">
+                            X
+                        </a>
+
+                    </div>
+
+                </div>
+
+            </div>
+
+
+            <div class="footer-bottom">
+
+                <p>
+                    © 2026 HireFlow. All rights reserved.
+                </p>
+
+                <p>
+                    Built with Django, Python & AI
+                </p>
+
+            </div>
+
+        </div>
+
+    </footer>
+
+
+    <!-- JavaScript -->
+    <script src="{% static 'js/script.js' %}"></script>
+
+</body>
+
+</html>
+

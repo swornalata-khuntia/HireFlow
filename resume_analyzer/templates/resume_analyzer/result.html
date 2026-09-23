@@ -1,0 +1,784 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Resume Analysis - HireFlow</title>
+
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: Arial, sans-serif;
+        }
+
+        body {
+            background: #f5f7fb;
+            color: #111827;
+            padding: 40px 20px;
+        }
+
+        .container {
+            max-width: 1000px;
+            margin: auto;
+        }
+
+        /* Header */
+
+        .logo {
+            font-size: 28px;
+            font-weight: bold;
+            margin-bottom: 25px;
+        }
+
+        .logo span {
+            color: #6366f1;
+        }
+
+        .header h1 {
+            font-size: 30px;
+            margin-bottom: 8px;
+        }
+
+        .header p {
+            color: #6b7280;
+            margin-bottom: 25px;
+        }
+
+        /* Success */
+
+        .success {
+            background: #ecfdf5;
+            color: #047857;
+            padding: 15px;
+            border-radius: 10px;
+            margin-bottom: 20px;
+            font-weight: 600;
+        }
+
+        /* Cards */
+
+        .card {
+            background: white;
+            border-radius: 16px;
+            padding: 25px;
+            margin-bottom: 20px;
+            box-shadow: 0 5px 20px rgba(0, 0, 0, 0.05);
+            border: 1px solid #eef0f5;
+        }
+
+        .card h2 {
+            font-size: 21px;
+            margin-bottom: 20px;
+        }
+
+        /* Score */
+
+        .score-section {
+            display: flex;
+            align-items: center;
+            gap: 30px;
+            flex-wrap: wrap;
+        }
+
+        .score-circle {
+            width: 150px;
+            height: 150px;
+            border-radius: 50%;
+            background: #eef2ff;
+            border: 10px solid #6366f1;
+
+            display: flex;
+            justify-content: center;
+            align-items: center;
+
+            flex-shrink: 0;
+        }
+
+        .score-number {
+            text-align: center;
+        }
+
+        .score-number h3 {
+            font-size: 40px;
+            color: #4338ca;
+        }
+
+        .score-number span {
+            color: #6b7280;
+            font-size: 14px;
+        }
+
+        .score-info {
+            flex: 1;
+            min-width: 250px;
+        }
+
+        .score-info h3 {
+            font-size: 23px;
+            margin-bottom: 10px;
+        }
+
+        .score-info p {
+            color: #6b7280;
+            line-height: 1.6;
+        }
+
+        /* Breakdown */
+
+        .breakdown {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 15px;
+        }
+
+        .breakdown-item {
+            background: #f8fafc;
+            border: 1px solid #e5e7eb;
+            padding: 18px;
+            border-radius: 12px;
+        }
+
+        .breakdown-top {
+            display: flex;
+            justify-content: space-between;
+            margin-bottom: 10px;
+        }
+
+        .breakdown-title {
+            font-weight: 600;
+        }
+
+        .breakdown-score {
+            color: #4f46e5;
+            font-weight: bold;
+        }
+
+        .progress {
+            height: 8px;
+            width: 100%;
+            background: #e5e7eb;
+            border-radius: 10px;
+            overflow: hidden;
+        }
+
+        .bar {
+            height: 100%;
+            background: linear-gradient(90deg, #4f46e5, #7c3aed);
+            border-radius: 10px;
+        }
+
+        .description {
+            margin-top: 8px;
+            color: #6b7280;
+            font-size: 12px;
+        }
+
+        /* File */
+
+        .file-name {
+            color: #4f46e5;
+            font-weight: 600;
+            word-break: break-word;
+            background: #f8fafc;
+            padding: 15px;
+            border-radius: 10px;
+        }
+
+        /* Skills */
+
+        .skills {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 10px;
+        }
+
+        .skill {
+            background: #eef2ff;
+            color: #4338ca;
+            padding: 9px 15px;
+            border-radius: 20px;
+            font-size: 14px;
+            font-weight: 600;
+        }
+
+        .skill-count {
+            margin-top: 15px;
+            color: #6b7280;
+            font-size: 14px;
+        }
+
+        .no-skills {
+            color: #6b7280;
+        }
+
+        /* Extracted text */
+
+        .text-box {
+            background: #f8fafc;
+            border: 1px solid #e5e7eb;
+            padding: 20px;
+            border-radius: 12px;
+
+            max-height: 500px;
+            overflow-y: auto;
+
+            white-space: pre-wrap;
+            line-height: 1.7;
+
+            color: #374151;
+            font-size: 14px;
+        }
+
+        /* Buttons */
+
+        .buttons {
+            margin-top: 25px;
+            margin-bottom: 30px;
+        }
+
+        .button {
+            display: inline-block;
+            padding: 12px 20px;
+            margin-right: 8px;
+
+            background: linear-gradient(
+                135deg,
+                #4f46e5,
+                #7c3aed
+            );
+
+            color: white;
+            text-decoration: none;
+            border-radius: 9px;
+            font-weight: 600;
+        }
+
+        .button:hover {
+            opacity: 0.9;
+        }
+
+        .secondary {
+            background: white;
+            color: #4f46e5;
+            border: 1px solid #c7d2fe;
+        }
+
+        /* Footer */
+
+        .footer {
+            text-align: center;
+            color: #9ca3af;
+            font-size: 13px;
+            padding-bottom: 20px;
+        }
+
+        /* Mobile */
+
+        @media (max-width: 700px) {
+
+            body {
+                padding: 25px 15px;
+            }
+
+            .header h1 {
+                font-size: 25px;
+            }
+
+            .card {
+                padding: 20px;
+            }
+
+            .score-section {
+                justify-content: center;
+                text-align: center;
+            }
+
+            .score-info {
+                text-align: center;
+            }
+
+            .breakdown {
+                grid-template-columns: 1fr;
+            }
+
+            .button {
+                display: block;
+                text-align: center;
+                margin-right: 0;
+                margin-bottom: 10px;
+            }
+        }
+    </style>
+
+</head>
+
+
+<body>
+
+<div class="container">
+
+
+    <!-- HEADER -->
+
+    <div class="logo">
+        Hire<span>Flow</span>
+    </div>
+
+
+    <div class="header">
+
+        <h1>
+            Resume Analysis 🤖
+        </h1>
+
+        <p>
+            HireFlow successfully analyzed your resume.
+        </p>
+
+    </div>
+
+
+    <!-- SUCCESS -->
+
+    <div class="success">
+        ✓ Resume uploaded and analyzed successfully.
+    </div>
+
+
+    <!-- OVERALL SCORE -->
+
+    <div class="card">
+
+        <h2>
+            Overall Resume Score 📊
+        </h2>
+
+
+        <div class="score-section">
+
+
+            <div class="score-circle">
+
+                <div class="score-number">
+
+                    <h3>
+                        {{ resume_score }}
+                    </h3>
+
+                    <span>
+                        / 100
+                    </span>
+
+                </div>
+
+            </div>
+
+
+            <div class="score-info">
+
+                <h3>
+                    Your Resume Score
+                </h3>
+
+
+                {% if resume_score >= 80 %}
+
+                <p>
+                    Your resume has a strong overall profile.
+                    Continue improving your projects, technical
+                    skills and professional experience.
+                </p>
+
+
+                {% elif resume_score >= 60 %}
+
+                <p>
+                    Your resume has a good foundation.
+                    Adding more relevant skills, projects and
+                    experience can improve your overall score.
+                </p>
+
+
+                {% else %}
+
+                <p>
+                    Your resume has several areas that can be
+                    improved. Consider adding relevant skills,
+                    projects, certifications and experience.
+                </p>
+
+                {% endif %}
+
+            </div>
+
+        </div>
+
+    </div>
+
+
+    <!-- SCORE BREAKDOWN -->
+
+    <div class="card">
+
+        <h2>
+            Score Breakdown 📈
+        </h2>
+
+
+        <div class="breakdown">
+
+
+            <!-- Skills -->
+
+            <div class="breakdown-item">
+
+                <div class="breakdown-top">
+
+                    <span class="breakdown-title">
+                        🧠 Technical Skills
+                    </span>
+
+                    <span class="breakdown-score">
+                        {{ score_data.skills }} / 30
+                    </span>
+
+                </div>
+
+
+                <div class="progress">
+
+                    {% if score_data.skills >= 30 %}
+                        <div class="bar" style="width: 100%;"></div>
+
+                    {% elif score_data.skills >= 27 %}
+                        <div class="bar" style="width: 90%;"></div>
+
+                    {% elif score_data.skills >= 24 %}
+                        <div class="bar" style="width: 80%;"></div>
+
+                    {% elif score_data.skills >= 21 %}
+                        <div class="bar" style="width: 70%;"></div>
+
+                    {% elif score_data.skills >= 18 %}
+                        <div class="bar" style="width: 60%;"></div>
+
+                    {% elif score_data.skills >= 15 %}
+                        <div class="bar" style="width: 50%;"></div>
+
+                    {% elif score_data.skills >= 12 %}
+                        <div class="bar" style="width: 40%;"></div>
+
+                    {% elif score_data.skills >= 9 %}
+                        <div class="bar" style="width: 30%;"></div>
+
+                    {% elif score_data.skills >= 6 %}
+                        <div class="bar" style="width: 20%;"></div>
+
+                    {% elif score_data.skills >= 3 %}
+                        <div class="bar" style="width: 10%;"></div>
+
+                    {% else %}
+                        <div class="bar" style="width: 0%;"></div>
+                    {% endif %}
+
+                </div>
+
+
+                <p class="description">
+                    Technical skills detected from your resume.
+                </p>
+
+            </div>
+
+
+            <!-- Projects -->
+
+            <div class="breakdown-item">
+
+                <div class="breakdown-top">
+
+                    <span class="breakdown-title">
+                        💼 Projects
+                    </span>
+
+                    <span class="breakdown-score">
+                        {{ score_data.projects }} / 25
+                    </span>
+
+                </div>
+
+
+                <div class="progress">
+
+                    {% if score_data.projects >= 25 %}
+                        <div class="bar" style="width: 100%;"></div>
+
+                    {% elif score_data.projects >= 20 %}
+                        <div class="bar" style="width: 80%;"></div>
+
+                    {% elif score_data.projects >= 15 %}
+                        <div class="bar" style="width: 60%;"></div>
+
+                    {% elif score_data.projects >= 10 %}
+                        <div class="bar" style="width: 40%;"></div>
+
+                    {% elif score_data.projects >= 5 %}
+                        <div class="bar" style="width: 20%;"></div>
+
+                    {% else %}
+                        <div class="bar" style="width: 0%;"></div>
+                    {% endif %}
+
+                </div>
+
+
+                <p class="description">
+                    Project and development-related content.
+                </p>
+
+            </div>
+
+
+            <!-- Education -->
+
+            <div class="breakdown-item">
+
+                <div class="breakdown-top">
+
+                    <span class="breakdown-title">
+                        🎓 Education
+                    </span>
+
+                    <span class="breakdown-score">
+                        {{ score_data.education }} / 20
+                    </span>
+
+                </div>
+
+
+                <div class="progress">
+
+                    {% if score_data.education >= 20 %}
+                        <div class="bar" style="width: 100%;"></div>
+
+                    {% elif score_data.education >= 16 %}
+                        <div class="bar" style="width: 80%;"></div>
+
+                    {% elif score_data.education >= 12 %}
+                        <div class="bar" style="width: 60%;"></div>
+
+                    {% elif score_data.education >= 8 %}
+                        <div class="bar" style="width: 40%;"></div>
+
+                    {% elif score_data.education >= 4 %}
+                        <div class="bar" style="width: 20%;"></div>
+
+                    {% else %}
+                        <div class="bar" style="width: 0%;"></div>
+                    {% endif %}
+
+                </div>
+
+
+                <p class="description">
+                    Academic and educational information.
+                </p>
+
+            </div>
+
+
+            <!-- Experience -->
+
+            <div class="breakdown-item">
+
+                <div class="breakdown-top">
+
+                    <span class="breakdown-title">
+                        💻 Experience
+                    </span>
+
+                    <span class="breakdown-score">
+                        {{ score_data.experience }} / 15
+                    </span>
+
+                </div>
+
+
+                <div class="progress">
+
+                    {% if score_data.experience >= 15 %}
+                        <div class="bar" style="width: 100%;"></div>
+
+                    {% else %}
+                        <div class="bar" style="width: 0%;"></div>
+                    {% endif %}
+
+                </div>
+
+
+                <p class="description">
+                    Work experience and internship information.
+                </p>
+
+            </div>
+
+
+            <!-- Certifications -->
+
+            <div class="breakdown-item">
+
+                <div class="breakdown-top">
+
+                    <span class="breakdown-title">
+                        📜 Certifications
+                    </span>
+
+                    <span class="breakdown-score">
+                        {{ score_data.certifications }} / 10
+                    </span>
+
+                </div>
+
+
+                <div class="progress">
+
+                    {% if score_data.certifications >= 10 %}
+                        <div class="bar" style="width: 100%;"></div>
+
+                    {% else %}
+                        <div class="bar" style="width: 0%;"></div>
+                    {% endif %}
+
+                </div>
+
+
+                <p class="description">
+                    Certifications and professional courses.
+                </p>
+
+            </div>
+
+
+        </div>
+
+    </div>
+
+
+    <!-- RESUME FILE -->
+
+    <div class="card">
+
+        <h2>
+            Resume File 📄
+        </h2>
+
+
+        <div class="file-name">
+            {{ resume.resume_file.name }}
+        </div>
+
+    </div>
+
+
+    <!-- DETECTED SKILLS -->
+
+    <div class="card">
+
+        <h2>
+            Detected Skills 🧠
+        </h2>
+
+
+        {% if detected_skills %}
+
+        <div class="skills">
+
+            {% for skill in detected_skills %}
+
+            <span class="skill">
+                {{ skill }}
+            </span>
+
+            {% endfor %}
+
+        </div>
+
+
+        <p class="skill-count">
+
+            HireFlow detected
+            <strong>{{ detected_skills|length }}</strong>
+            technical skills from your resume.
+
+        </p>
+
+
+        {% else %}
+
+        <p class="no-skills">
+            No matching technical skills were detected.
+        </p>
+
+        {% endif %}
+
+    </div>
+
+
+    <!-- EXTRACTED CONTENT -->
+
+    <div class="card">
+
+        <h2>
+            Extracted Resume Content 📝
+        </h2>
+
+
+        <div class="text-box">
+
+            {{ resume.extracted_text }}
+
+        </div>
+
+    </div>
+
+
+    <!-- BUTTONS -->
+
+    <div class="buttons">
+
+        <a
+            href="{% url 'resume_upload' %}"
+            class="button"
+        >
+            Upload Another Resume
+        </a>
+
+
+        <a
+            href="{% url 'dashboard' %}"
+            class="button secondary"
+        >
+            Dashboard
+        </a>
+
+    </div>
+
+
+    <!-- FOOTER -->
+
+    <div class="footer">
+
+        HireFlow • AI-Powered Recruitment Platform
+
+    </div>
+
+
+</div>
+
+</body>
+
+</html>
