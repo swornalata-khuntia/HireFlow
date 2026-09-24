@@ -103,11 +103,11 @@ Supported application statuses include:
 
 ### 📄 Resume Analyzer
 
-![Resume Analyzer](screenshots/resume-analyzer.png)
+![Resume Analyzer](screenshots/resume_analyzer.png)
 
 ### 🎯 Job Matches
 
-![Job Matches](screenshots/job-matches.png)
+![Job Matches](screenshots/job_matches.png)
 
 ### 📋 My Applications
 
@@ -115,7 +115,7 @@ Supported application statuses include:
 
 ### 🏢 Recruiter Dashboard
 
-![Recruiter Dashboard](screenshots/recruiter-dashboard.png)
+![Recruiter Dashboard](screenshots/recruiter_dashboard.png)
 
 ---
 
