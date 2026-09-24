@@ -38,3 +38,4 @@ htmlcov/
 
 # Resume uploads
 resumes/*.pdf
+staticfiles/
