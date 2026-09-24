@@ -2,7 +2,7 @@
 
 HireFlow is a Django-based recruitment platform designed to connect job seekers and recruiters through a single web application.
 
-The platform provides job discovery, resume analysis, job matching, application tracking, recruiter job management, and REST APIs.
+It provides resume analysis, skill detection, job matching, job applications, application tracking, recruiter job management, candidate profiles, and REST APIs.
 
 ---
 
@@ -16,12 +16,12 @@ The platform provides job discovery, resume analysis, job matching, application 
 - Resume upload
 - Resume text extraction
 - Resume skill detection
-- Resume profile score
-- Job matching
+- Resume profile analysis
 - Job browsing
+- Job matching
 - Job application
 - Application status tracking
-- My Applications page
+- My Applications
 
 ### 🏢 Recruiter Features
 
@@ -37,9 +37,9 @@ The platform provides job discovery, resume analysis, job matching, application 
 
 ### 📄 Resume Analyzer
 
-HireFlow allows candidates to upload resumes and process extracted resume content.
+HireFlow allows candidates to upload resumes and process the extracted resume content.
 
-The system can detect technical skills such as:
+The system detects technical skills from uploaded resumes, including:
 
 - Python
 - Java
@@ -78,7 +78,7 @@ Candidates can:
 
 Recruiters can:
 
-- View applications
+- View candidate applications
 - Update application status
 
 Supported application statuses include:
@@ -88,6 +88,34 @@ Supported application statuses include:
 - Interview
 - Rejected
 - Selected
+
+---
+
+## 📸 Screenshots
+
+### 🔐 Login
+
+![HireFlow Login](screenshots/login.png)
+
+### 👤 Candidate Dashboard
+
+![Candidate Dashboard](screenshots/dashboard.png)
+
+### 📄 Resume Analyzer
+
+![Resume Analyzer](screenshots/resume-analyzer.png)
+
+### 🎯 Job Matches
+
+![Job Matches](screenshots/job-matches.png)
+
+### 📋 My Applications
+
+![My Applications](screenshots/application.png)
+
+### 🏢 Recruiter Dashboard
+
+![Recruiter Dashboard](screenshots/recruiter-dashboard.png)
 
 ---
 
@@ -185,6 +213,14 @@ The APIs are built using Django REST Framework.
     │   ├── api_views.py
     │   └── api_serializers.py
     │
+    ├── screenshots/
+    │   ├── login.png
+    │   ├── dashboard.png
+    │   ├── resume-analyzer.png
+    │   ├── job-matches.png
+    │   ├── applications.png
+    │   └── recruiter-dashboard.png
+    │
     ├── static/
     │   ├── css/
     │   └── js/
@@ -232,13 +268,11 @@ For Windows:
 
     python manage.py createsuperuser
 
-Follow the instructions shown in the terminal.
-
 ### 8. Start the development server
 
     python manage.py runserver
 
-Open the application in your browser:
+Open the application:
 
     http://127.0.0.1:8000/
 
