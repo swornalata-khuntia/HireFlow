@@ -30,12 +30,14 @@ SECRET_KEY = os.environ.get(
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = os.environ.get("DEBUG", "True") == "True"
 
-ALLOWED_HOSTS = [host.strip()
-    for host in os.environ.get("ALLOWED_HOSTS", "").split(",")
-    if host.strip()]
-
-if DEBUG and not ALLOWED_HOSTS:
-    ALLOWED_HOSTS = ["127.0.0.1", "localhost"]
+ALLOWED_HOSTS = [
+    host.strip()
+    for host in os.environ.get(
+        "ALLOWED_HOSTS",
+        "127.0.0.1,localhost,hireflow-i9kl.onrender.com"
+    ).split(",")
+    if host.strip()
+]
 
 
 # Application definition
