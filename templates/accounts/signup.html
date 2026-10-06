@@ -3,6 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
     <title>Sign Up - HireFlow</title>
 
     <style>
@@ -18,11 +19,12 @@
             display: flex;
             justify-content: center;
             align-items: center;
+            padding: 30px 15px;
             background: linear-gradient(135deg, #0f172a, #312e81);
         }
 
         .signup-box {
-            width: 400px;
+            width: 420px;
             padding: 35px;
             background: white;
             border-radius: 18px;
@@ -31,7 +33,7 @@
 
         .logo {
             text-align: center;
-            font-size: 28px;
+            font-size: 30px;
             font-weight: bold;
             color: #4f46e5;
             margin-bottom: 8px;
@@ -50,17 +52,24 @@
             color: #334155;
         }
 
-        input {
+        input,
+        select {
             width: 100%;
             padding: 13px;
             margin-bottom: 18px;
             border: 1px solid #cbd5e1;
             border-radius: 9px;
             outline: none;
+            background: white;
         }
 
-        input:focus {
+        input:focus,
+        select:focus {
             border-color: #6366f1;
+        }
+
+        .company-field {
+            display: none;
         }
 
         button {
@@ -83,6 +92,7 @@
             color: #dc2626;
             text-align: center;
             margin-bottom: 15px;
+            font-size: 14px;
         }
 
         .login-link {
@@ -108,30 +118,112 @@
     <p class="subtitle">Create your account</p>
 
     {% if error %}
-        <div class="error">{{ error }}</div>
+        <div class="error">
+            {{ error }}
+        </div>
     {% endif %}
 
     <form method="POST">
         {% csrf_token %}
 
         <label>Username</label>
-        <input type="text" name="username" placeholder="Enter username" required>
+        <input
+            type="text"
+            name="username"
+            placeholder="Enter username"
+            required
+        >
 
         <label>Email</label>
-        <input type="email" name="email" placeholder="Enter email" required>
+        <input
+            type="email"
+            name="email"
+            placeholder="Enter email"
+            required
+        >
 
         <label>Password</label>
-        <input type="password" name="password" placeholder="Create password" required>
+        <input
+            type="password"
+            name="password"
+            placeholder="Create password"
+            required
+        >
 
-        <button type="submit">Create Account</button>
+        <label>Account Type</label>
+
+        <select name="role" id="role" required>
+            <option value="job_seeker">
+                Job Seeker
+            </option>
+
+            <option value="recruiter">
+                Recruiter
+            </option>
+        </select>
+
+        <div class="company-field" id="companyField">
+
+            <label>Company Name</label>
+
+            <input
+                type="text"
+                name="company_name"
+                id="companyName"
+                placeholder="Enter company name"
+            >
+
+        </div>
+
+        <button type="submit">
+            Create Account
+        </button>
+
     </form>
 
     <div class="login-link">
         Already have an account?
-        <a href="{% url 'login' %}">Login</a>
+        <a href="{% url 'login' %}">
+            Login
+        </a>
     </div>
 
 </div>
+
+
+<script>
+
+    const roleSelect = document.getElementById("role");
+    const companyField = document.getElementById("companyField");
+    const companyName = document.getElementById("companyName");
+
+    function updateCompanyField() {
+
+        if (roleSelect.value === "recruiter") {
+
+            companyField.style.display = "block";
+
+            companyName.required = true;
+
+        } else {
+
+            companyField.style.display = "none";
+
+            companyName.required = false;
+
+            companyName.value = "";
+
+        }
+    }
+
+    roleSelect.addEventListener(
+        "change",
+        updateCompanyField
+    );
+
+    updateCompanyField();
+
+</script>
 
 </body>
 </html>
