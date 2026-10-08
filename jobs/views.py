@@ -70,8 +70,6 @@ def calculate_match(resume_skills, required_skills):
         matched_skills,
         missing_skills
     )
-
-
 # =========================
 # AI JOB MATCHES
 # =========================
@@ -83,7 +81,7 @@ def job_matches(request):
         user=request.user
     ).order_by("-uploaded_at").first()
 
-    jobs = Job.objects.all()
+    jobs = Job.objects.all().order_by("-created_at")
 
     results = []
     resume_skills = []
@@ -91,7 +89,7 @@ def job_matches(request):
     if latest_resume:
 
         resume_skills = detect_skills(
-            latest_resume.extracted_text
+            latest_resume.extracted_text or ""
         )
 
         for job in jobs:
@@ -123,6 +121,18 @@ def job_matches(request):
             reverse=True
         )
 
+    else:
+
+        # Resume nahi hai, phir bhi saari jobs show hongi
+        for job in jobs:
+
+            results.append({
+                "job": job,
+                "match_percentage": None,
+                "matched_skills": [],
+                "missing_skills": [],
+            })
+
     context = {
         "results": results,
         "latest_resume": latest_resume,
@@ -134,8 +144,6 @@ def job_matches(request):
         "jobs/job_matches.html",
         context
     )
-
-
 # =========================
 # RECRUITER - POST JOB
 # =========================
@@ -159,11 +167,12 @@ def post_job(request):
 
             job = form.save(commit=False)
 
+            # Company automatically recruiter profile se aayegi
             job.company = profile.company_name
 
             job.save()
 
-            return redirect("recruiter_dashboard")
+            return redirect("manage_jobs")
 
     else:
 
@@ -179,7 +188,6 @@ def post_job(request):
         "jobs/post_job.html",
         context
     )
-
 
 # =========================
 # RECRUITER - MANAGE JOBS
